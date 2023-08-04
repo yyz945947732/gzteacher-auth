@@ -1,50 +1,43 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "./Button";
+import { Auth, ButtonProps } from "../core";
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: "Example/Button",
-  component: Button,
-  parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
-    layout: "centered",
-  },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  title: "Auth.Button",
+  component: Auth.Button,
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Auth.Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
-  args: {
-    primary: true,
-    label: "Button",
-  },
+const authConfig = {
+  "user.watch": true,
+  "user.add": true,
+  "user.edit": true,
 };
 
-export const Secondary: Story = {
-  args: {
-    label: "Button",
-  },
+const ButtonExample = (args: ButtonProps) => {
+  return (
+    <Auth.Provider auth={authConfig}>
+      <p>您有以下权限: </p>
+      <ul>
+        {Object.keys(authConfig).map((authCode) => (
+          <li key={authCode}>{authCode}</li>
+        ))}
+      </ul>
+      <p>
+        尝试在编辑区修改 <code>authCode</code> 让内容变成按钮
+      </p>
+      <Auth.Button {...args}>{args.children}</Auth.Button>
+    </Auth.Provider>
+  );
 };
 
-export const Large: Story = {
-  args: {
-    size: "large",
-    label: "Button",
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: "small",
-    label: "Button",
-  },
+export const Button = ButtonExample.bind({}) as Story;
+Button.args = {
+  authCode: "user.noAuth",
+  children: "点我",
+  onClick: () => window.alert("您的电脑即将爆炸"),
+  type: "primary",
 };

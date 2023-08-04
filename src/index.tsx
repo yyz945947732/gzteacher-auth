@@ -1,11 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-
-  </React.StrictMode>
-);
+export type {
+  ButtonProps,
+  DenyProps,
+  ProviderProps,
+  ProxyProps,
+  WrapperProps,
+} from "./core";
+export { default as Auth } from "./core";
