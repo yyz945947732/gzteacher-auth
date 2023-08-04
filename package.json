@@ -45,7 +45,8 @@
     "prettier": "prettier src --write",
     "eslint": "eslint src --fix",
     "ling-staged": "ling-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "chromatic": "npx chromatic --project-token=chpt_3fa355f3ad9caaa"
   },
   "eslintConfig": {
     "extends": [
@@ -85,6 +86,7 @@
     "@typescript-eslint/parser": "^6.2.1",
     "autoprefixer": "^10.4.14",
     "babel-plugin-named-exports-order": "0.0.2",
+    "chromatic": "^6.20.0",
     "commitlint": "^17.6.7",
     "eslint": "^8.46.0",
     "eslint-plugin-react": "^7.33.1",
@@ -100,5 +102,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "storybook": "^7.2.1",
     "webpack": "^5.88.2"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "@gzteacher/auth@0.1.0"
 }
