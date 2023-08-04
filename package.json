@@ -44,7 +44,7 @@
     "eslint": "eslint src --fix",
     "ling-staged": "ling-staged",
     "prepare": "husky install",
-    "chromatic": "npx chromatic --project-token=chpt_3fa355f3ad9caaa"
+    "doc": "npx chromatic --project-token=chpt_3fa355f3ad9caaa"
   },
   "eslintConfig": {
     "extends": [
