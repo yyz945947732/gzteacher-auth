@@ -19,3 +19,4 @@ yarn-error.log*
 package-lock.json
 /*.log
 /*.lock
+storybook-static
