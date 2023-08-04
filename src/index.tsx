@@ -6,3 +6,4 @@ export type {
   WrapperProps,
 } from "./core";
 export { default as Auth } from "./core";
+export { useMatchAuth } from "./core";

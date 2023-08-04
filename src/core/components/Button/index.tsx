@@ -1,3 +1,5 @@
+import "@alifd/next/lib/button/style2";
+
 import { Button as ButtonComponent } from "@alifd/next";
 import { ButtonProps as ButtonComponentProps } from "@alifd/next/types/button/index";
 import React from "react";

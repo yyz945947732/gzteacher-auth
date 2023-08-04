@@ -19,7 +19,7 @@ const authConfig = {
 const WrapperExample = (args: DenyProps) => {
   return (
     <Auth.Provider auth={authConfig}>
-      <p>您有以下权限: </p>
+      <p>已知您有以下权限: </p>
       <ul>
         {Object.keys(authConfig).map((authCode) => (
           <li key={authCode}>{authCode}</li>

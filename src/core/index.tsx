@@ -1,5 +1,3 @@
-import "./index.css";
-
 import Button from "./components/Button";
 import Deny from "./components/Deny";
 import Provider from "./components/Provider";
@@ -25,3 +23,4 @@ export type { DenyProps } from "./components/Deny";
 export type { ProviderProps } from "./components/Provider";
 export type { ProxyProps } from "./components/Proxy";
 export type { WrapperProps } from "./components/Wrapper";
+export { useMatchAuth } from "./hooks/useMatchAuth";

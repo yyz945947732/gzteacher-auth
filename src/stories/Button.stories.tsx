@@ -20,7 +20,7 @@ const authConfig = {
 const ButtonExample = (args: ButtonProps) => {
   return (
     <Auth.Provider auth={authConfig}>
-      <p>您有以下权限: </p>
+      <p>已知您有以下权限: </p>
       <ul>
         {Object.keys(authConfig).map((authCode) => (
           <li key={authCode}>{authCode}</li>

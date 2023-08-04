@@ -20,14 +20,14 @@ const authConfig = {
 const WrapperExample = (args: WrapperProps) => {
   return (
     <Auth.Provider auth={authConfig}>
-      <p>您有以下权限: </p>
+      <p>已知您有以下权限: </p>
       <ul>
         {Object.keys(authConfig).map((authCode) => (
           <li key={authCode}>{authCode}</li>
         ))}
       </ul>
       <p>
-        尝试在编辑区修改 <code>authCode</code> 以看得见以下隐藏内容 ⬇️
+        尝试在编辑区修改 <code>authCode</code> 以查看以下隐藏内容 ⬇️
       </p>
       <Auth.Wrapper {...args}>{args.children}</Auth.Wrapper>
     </Auth.Provider>

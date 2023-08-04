@@ -9,9 +9,40 @@
 Install with [yarn](https://yarnpkg.com/):
 
 ```sh
-$ yarn add @gzteacher/auth
+yarn add @gzteacher/auth
 ```
 
 ## Usage
 
+使用 `Auth.Provider` 组件包裹以使用权限相关组件。
 
+```typescript
+// index.tsx
+import { useState } from "react";
+import { Auth } from "@gzteacher/auth";
+
+function Layout() {
+  const [auth, setAuth] = useState();
+
+  const getAuth = async () => {
+    const auth = await getAuth();
+    console.log(auth);
+    // {
+    //    "user.watch": true,
+    //    "user.edit": true,
+    // }
+    setAuth(auth);
+  };
+
+  useEffect(() => {
+    getAuth();
+  }, []);
+
+  return (
+    <Auth.Provider auth={auth}>
+      <Auth.Wrapper authCode="user.watch">查看</Auth.Wrapper>
+      <Auth.Button authCode="user.edit">编辑</Auth.Button>
+    </Auth.Provider>
+  );
+}
+```

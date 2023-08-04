@@ -10,7 +10,8 @@
   "keywords": [
     "@gzteacher",
     "auth",
-    "@alifd/next"
+    "@alifd/next",
+    "ice"
   ],
   "license": "MIT",
   "module": "es/index.js",
@@ -20,7 +21,6 @@
   ],
   "dependencies": {
     "@alifd/next": "^1.26.22",
-    "@alifd/theme-design-pro": "^0.8.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -36,10 +36,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "storybook dev -p 6006",
     "build": "rimraf es && rollup -c",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prettier": "prettier src --write",
