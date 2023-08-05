@@ -20,3 +20,4 @@ package-lock.json
 /*.log
 /*.lock
 storybook-static
+es
