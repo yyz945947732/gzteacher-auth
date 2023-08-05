@@ -5,7 +5,7 @@
     "name": "yyz945947732",
     "email": "945947732@qq.com"
   },
-  "description": "auth component base on @alifd/next",
+  "description": "auth components base on @alifd/next",
   "homepage": "https://github.com/yyz945947732/gzteacher-auth",
   "keywords": [
     "@gzteacher",
@@ -44,7 +44,7 @@
     "eslint": "eslint src --fix",
     "ling-staged": "ling-staged",
     "prepare": "husky install",
-    "doc": "npx chromatic --project-token=chpt_3fa355f3ad9caaa"
+    "doc": "npx chromatic --project-token=chpt_3fa355f3ad9caaa -d storybook-static/"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +66,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@commitlint/config-conventional": "^17.6.7",
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-node-resolve": "^15.1.0",
