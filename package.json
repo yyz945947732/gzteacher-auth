@@ -70,7 +70,6 @@
     "@commitlint/config-conventional": "^17.6.7",
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-strip": "^3.0.2",
     "@rollup/plugin-typescript": "^11.1.2",
     "@storybook/addon-essentials": "^7.2.1",
     "@storybook/addon-interactions": "^7.2.1",
@@ -83,7 +82,6 @@
     "@storybook/testing-library": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
-    "autoprefixer": "^10.4.14",
     "babel-plugin-named-exports-order": "0.0.2",
     "chromatic": "^6.20.0",
     "commitlint": "^17.6.7",
@@ -98,9 +96,7 @@
     "prop-types": "^15.8.1",
     "rollup": "^3.27.1",
     "rollup-plugin-node-externals": "^6.1.1",
-    "rollup-plugin-postcss": "^4.0.2",
-    "storybook": "^7.2.1",
-    "webpack": "^5.88.2"
+    "storybook": "^7.2.1"
   },
   "readme": "ERROR: No README data found!",
   "_id": "@gzteacher/auth@0.1.0"
