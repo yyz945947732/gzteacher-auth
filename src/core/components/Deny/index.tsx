@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { useMatchAuth } from '../../hooks/useMatchAuth';
+import { useMatchAuth } from "../../hooks/useMatchAuth";
 
 export interface DenyProps {
   authCode?: string;

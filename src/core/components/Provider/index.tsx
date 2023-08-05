@@ -18,7 +18,9 @@ export const ProviderContext = createContext<ProviderContext>({});
 function Provider(props: ProviderProps) {
   const { children, ...authProps } = props;
   return (
-    <ProviderContext.Provider value={authProps}>{children}</ProviderContext.Provider>
+    <ProviderContext.Provider value={authProps}>
+      {children}
+    </ProviderContext.Provider>
   );
 }
 
