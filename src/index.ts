@@ -4,6 +4,7 @@ export type {
   ProviderProps,
   ProxyProps,
   SelectProps,
+  TableProps,
   TabProps,
   WrapperProps,
 } from "./core";

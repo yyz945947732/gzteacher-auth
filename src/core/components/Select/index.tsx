@@ -1,7 +1,7 @@
 import "@alifd/next/lib/select/style2";
 
 import { Select as SelectComponent } from "@alifd/next";
-import { SelectProps as SelectComponentProps } from "@alifd/next/types/select/index";
+import type { SelectProps as SelectComponentProps } from "@alifd/next/types/select/index";
 
 import { useAuthData } from "../../hooks/useAuthData";
 

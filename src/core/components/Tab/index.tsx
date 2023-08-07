@@ -1,7 +1,7 @@
 import "@alifd/next/lib/tab/style2";
 
 import { Tab as TabComponent } from "@alifd/next";
-import {
+import type {
   ItemProps as ItemComponentProps,
   TabProps as TabComponentProps,
 } from "@alifd/next/types/tab/index";
