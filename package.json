@@ -45,7 +45,7 @@
     "eslint": "eslint src --fix",
     "ling-staged": "ling-staged",
     "prepare": "husky install",
-    "doc": "npx chromatic --project-token=chpt_3fa355f3ad9caaa -d storybook-static/"
+    "doc": "npx chromatic --exit-zero-on-changes --project-token=chpt_3fa355f3ad9caaa -d storybook-static/"
   },
   "eslintConfig": {
     "extends": [

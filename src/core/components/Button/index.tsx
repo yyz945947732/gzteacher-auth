@@ -13,7 +13,7 @@ export interface ButtonProps extends ButtonComponentProps {
   children?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = (prop) => {
+function Button(prop: ButtonProps) {
   const { authCode, children, ...otherProps } = prop;
   const canEvent = useMatchAuth(authCode);
   return (
@@ -25,6 +25,6 @@ const Button: React.FC<ButtonProps> = (prop) => {
       )}
     </>
   );
-};
+}
 
 export default Button;

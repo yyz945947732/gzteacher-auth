@@ -7,10 +7,10 @@ export interface DenyProps {
   children?: React.ReactNode;
 }
 
-const Deny: React.FC<DenyProps> = (prop) => {
-  const { authCode, children } = prop;
+function Deny(props: DenyProps) {
+  const { authCode, children } = props;
   const notRender = useMatchAuth(authCode);
   return <>{notRender ? <></> : children}</>;
-};
+}
 
 export default Deny;

@@ -3,7 +3,9 @@ export type {
   DenyProps,
   ProviderProps,
   ProxyProps,
+  SelectProps,
+  TabProps,
   WrapperProps,
 } from "./core";
 export { default as Auth } from "./core";
-export { useMatchAuth } from "./core";
+export { useAuthData,useMatchAuth } from "./core";

@@ -9,10 +9,10 @@ export interface WrapperProps {
   children?: React.ReactNode;
 }
 
-const Wrapper: React.FC<WrapperProps> = (prop) => {
-  const { authCode, children } = prop;
+function Wrapper(props: WrapperProps) {
+  const { authCode, children } = props;
   const canRender = useMatchAuth(authCode);
   return <>{canRender ? children : <></>}</>;
-};
+}
 
 export default Wrapper;
