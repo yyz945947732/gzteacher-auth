@@ -12,4 +12,3 @@ export function isMatchAuth(
     return match;
   }
 }
-
