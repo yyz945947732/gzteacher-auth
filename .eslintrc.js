@@ -37,5 +37,6 @@ module.exports = {
     "simple-import-sort/exports": "warn",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
   },
 };

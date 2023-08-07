@@ -7,7 +7,6 @@ const meta = {
   component: Auth.Button,
   tags: ["autodocs"],
 } satisfies Meta<typeof Auth.Button>;
-
 export default meta;
 type Story = StoryObj<typeof meta>;
 
