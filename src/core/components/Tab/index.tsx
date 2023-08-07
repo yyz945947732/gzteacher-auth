@@ -18,7 +18,9 @@ export interface TabProps extends TabComponentProps {
 
 function Tab(prop: TabProps) {
   const { tabItems, ...otherProps } = prop;
-  const authTabItems = useAuthData(tabItems);
+  const authTabItems = useAuthData(tabItems, {
+    isTree: false,
+  });
 
   return (
     <TabComponent {...otherProps}>
