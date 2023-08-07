@@ -2,9 +2,37 @@
 
 > 基于 @alifd/next 的权限相关组件
 
-[在线文档](https://64cca10e002c2d1cef000809-dloswjkuim.chromatic.com/)
+<p>
+  <a href="https://github.com/alibaba/ice/pulls">
+    <img
+      src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"
+      alt="PRs Welcome"
+    />
+  </a>
+</p>
+
+[📚 在线文档](https://64cca10e002c2d1cef000809-dloswjkuim.chromatic.com/)
+
+## Features
+
+- 🐒 **基本**: 基本的权限逻辑组件
+  - _Provider_: 定义权限组件上下文
+  - _Wrapper_: 有权限时展示组件包裹内容
+  - _Deny_: 有权限时不展示组件包裹内容
+- 🐯 **组件**: 对`@alifd/next`的常用组件封装了基本权限逻辑
+  - _Button_: 无权限时展示为文本
+- 🦁 **代理**: 支持在上下文内将权限编码重定向到其他权限编码
+  - _Proxy_
+- 🐌 **工具**: 权限业务逻辑相关的工具函数
+  - _useMatchAuth_: 返回是否有对应权限
 
 ## Install
+
+Install with [npm](https://www.npmjs.com/):
+
+```sh
+$ npm install --save @gzteacher/auth
+```
 
 Install with [yarn](https://yarnpkg.com/):
 
@@ -45,4 +73,24 @@ function Layout() {
     </Auth.Provider>
   );
 }
+```
+
+##### ice2.js 中使用
+
+```typescript
+// app.tsx
+import { IAppConfig, runApp, useAuth } from "ice";
+import { Auth } from "@gzteacher/auth";
+
+const appConfig: IAppConfig = {
+  app: {
+    // ...
+    addProvider: ({ children }) => {
+      const [auth] = useAuth();
+      return <Auth.Provider auth={auth}>{children}</Auth.Provider>;
+    },
+  },
+};
+
+runApp(appConfig);
 ```
