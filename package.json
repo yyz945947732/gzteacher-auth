@@ -98,6 +98,5 @@
     "rollup-plugin-node-externals": "^6.1.1",
     "storybook": "^7.2.1"
   },
-  "readme": "ERROR: No README data found!",
   "_id": "@gzteacher/auth@0.1.0"
 }
