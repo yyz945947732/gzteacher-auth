@@ -31,7 +31,7 @@
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install --save @gzteacher/auth
+npm install --save @gzteacher/auth
 ```
 
 Install with [yarn](https://yarnpkg.com/):
