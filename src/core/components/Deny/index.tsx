@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useDetect } from "../../hooks/useDetect";
 import { useMatchAuth } from "../../hooks/useMatchAuth";
 
 export interface DenyProps {
@@ -8,6 +9,8 @@ export interface DenyProps {
 }
 
 function Deny(props: DenyProps) {
+  useDetect(Deny.name);
+
   const { authCode, children } = props;
   const notRender = useMatchAuth(authCode);
   return <>{notRender ? <></> : children}</>;

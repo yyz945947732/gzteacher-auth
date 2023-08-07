@@ -1,5 +1,7 @@
 import { createContext } from "react";
 
+import { useDetect } from "../../hooks/useDetect";
+
 export interface ProxyProps {
   children?: React.ReactNode;
   /** 权限编号代理，
@@ -18,6 +20,8 @@ type ProxyContext = Omit<ProxyProps, "children">;
 export const ProxyContext = createContext<ProxyContext>({});
 
 function Proxy(props: ProxyProps) {
+  useDetect(Proxy.name);
+
   const { children, ...proxyProps } = props;
   return (
     <ProxyContext.Provider value={proxyProps}>{children}</ProxyContext.Provider>

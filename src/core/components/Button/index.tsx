@@ -4,6 +4,7 @@ import { Button as ButtonComponent } from "@alifd/next";
 import type { ButtonProps as ButtonComponentProps } from "@alifd/next/types/button/index";
 import React from "react";
 
+import { useDetect } from "../../hooks/useDetect";
 import { useMatchAuth } from "../../hooks/useMatchAuth";
 
 export interface ButtonProps extends ButtonComponentProps {
@@ -14,6 +15,8 @@ export interface ButtonProps extends ButtonComponentProps {
 }
 
 function Button(prop: ButtonProps) {
+  useDetect(Button.name);
+
   const { authCode, children, ...otherProps } = prop;
   const canEvent = useMatchAuth(authCode);
   return (

@@ -4,10 +4,13 @@ import { Table as TableComponent } from "@alifd/next";
 import type { TableProps as TableComponentProps } from "@alifd/next/types/table/index";
 
 import { useAuthData } from "../../hooks/useAuthData";
+import { useDetect } from "../../hooks/useDetect";
 
 export interface TableProps extends TableComponentProps {}
 
 function Table(prop: TableProps) {
+  useDetect(Table.name);
+
   const { children, columns, ...otherProps } = prop;
   const authColumns = useAuthData(columns);
 

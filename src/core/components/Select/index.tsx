@@ -4,10 +4,13 @@ import { Select as SelectComponent } from "@alifd/next";
 import type { SelectProps as SelectComponentProps } from "@alifd/next/types/select/index";
 
 import { useAuthData } from "../../hooks/useAuthData";
+import { useDetect } from "../../hooks/useDetect";
 
 export interface SelectProps extends SelectComponentProps {}
 
 function Select(prop: SelectProps) {
+  useDetect(Select.name);
+
   const { children, dataSource, ...otherProps } = prop;
   const authData = useAuthData(dataSource);
 

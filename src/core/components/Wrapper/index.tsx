@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useDetect } from "../../hooks/useDetect";
 import { useMatchAuth } from "../../hooks/useMatchAuth";
 
 export interface WrapperProps {
@@ -10,6 +11,8 @@ export interface WrapperProps {
 }
 
 function Wrapper(props: WrapperProps) {
+  useDetect(Wrapper.name);
+  
   const { authCode, children } = props;
   const canRender = useMatchAuth(authCode);
   return <>{canRender ? children : <></>}</>;

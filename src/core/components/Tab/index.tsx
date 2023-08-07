@@ -7,6 +7,7 @@ import type {
 } from "@alifd/next/types/tab/index";
 
 import { useAuthData } from "../../hooks/useAuthData";
+import { useDetect } from "../../hooks/useDetect";
 
 export interface ItemProps extends ItemComponentProps {
   auth?: string | string[];
@@ -17,6 +18,8 @@ export interface TabProps extends TabComponentProps {
 }
 
 function Tab(prop: TabProps) {
+  useDetect(Tab.name);
+
   const { tabItems, ...otherProps } = prop;
   const authTabItems = useAuthData(tabItems, {
     isTree: false,
