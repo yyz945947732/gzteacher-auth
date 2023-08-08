@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/yyz945947732/gzteacher-auth">
-    <img alt="@gzteacher/auth" src="https://img.alicdn.com/tfs/TB1YsoiHVzqK1RjSZFCXXbbxVXa-159-99.svg" width="200" />
+    <img alt="@gzteacher/auth" src="./public/logo.png" width="280" />
   </a>
 </p>
 
