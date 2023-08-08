@@ -33,6 +33,7 @@ export default [
         outDir: "es",
         declaration: true,
         declarationDir: "es",
+        exclude: "src/stories/*",
       }),
     ],
   },

@@ -1,10 +1,7 @@
 {
   "name": "@gzteacher/auth",
   "version": "0.1.0",
-  "author": {
-    "name": "yyz945947732",
-    "email": "945947732@qq.com"
-  },
+  "author": "yyz945947732 <945947732@qq.com>",
   "description": "auth components base on @alifd/next",
   "homepage": "https://github.com/yyz945947732/gzteacher-auth",
   "keywords": [
@@ -105,5 +102,11 @@
     "rollup-plugin-node-externals": "^6.1.1",
     "storybook": "^7.2.1"
   },
-  "_id": "@gzteacher/auth@0.1.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yyz945947732/gzteacher-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yyz945947732/gzteacher-auth/issues"
+  }
 }
