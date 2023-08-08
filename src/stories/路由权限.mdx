@@ -1,0 +1,39 @@
+### 路由权限
+
+如果你在使用 ice2.js，你可以继续使用原框架内置路由权限功能。
+
+如果你需要抽离路由权限功能，可通过如下方式：
+
+```typescript
+// routes.ts
+const routerConfig = [
+  {
+    path: "/user",
+    component: User,
+    auth: "user-page",
+  },
+  // ...
+];
+
+export default routerConfig;
+
+// app.ts
+import routerConfig from "./routes";
+import { IAppConfig, useAuth } from "ice";
+import { Auth } from "@gzteacher/auth";
+
+const appConfig: IAppConfig = {
+  // ...
+  app: {
+    // ...
+    addProvider: ({ children }) => {
+      const [auth] = useAuth();
+      return (
+        <Auth.Provider auth={auth}>
+          <Auth.RouteGuard routes={routerConfig}>{children}</Auth.RouteGuard>
+        </Auth.Provider>
+      );
+    },
+  },
+};
+```
