@@ -19,6 +19,7 @@
   "files": [
     "es"
   ],
+  "private": "false",
   "dependencies": {
     "@alifd/next": "^1.26.22",
     "@testing-library/jest-dom": "^5.17.0",
