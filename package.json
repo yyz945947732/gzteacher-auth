@@ -5,10 +5,14 @@
   "description": "auth components base on @alifd/next",
   "homepage": "https://github.com/yyz945947732/gzteacher-auth",
   "keywords": [
-    "@gzteacher",
-    "auth",
     "@alifd/next",
-    "ice"
+    "fusion",
+    "fusion design",
+    "auth",
+    "@gzteacher",
+    "ice",
+    "react",
+    "react-components"
   ],
   "license": "MIT",
   "module": "es/index.js",
