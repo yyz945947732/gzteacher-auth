@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/yyz945947732/gzteacher-auth">
+    <img alt="@gzteacher/auth" src="https://img.alicdn.com/tfs/TB1YsoiHVzqK1RjSZFCXXbbxVXa-159-99.svg" width="200" />
+  </a>
+</p>
+
 # @gzteacher/auth
 
 > 基于 @alifd/next 的权限相关组件
