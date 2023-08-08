@@ -1,31 +1,41 @@
-import Button from "./components/Button";
-import Deny from "./components/Deny";
-import Provider from "./components/Provider";
-import Proxy from "./components/Proxy";
-import Select from "./components/Select";
-import Tab from "./components/Tab";
-import Table from "./components/Table";
+import AuthButton from "./components/Button";
+import AuthDenyWrapper from "./components/DenyWrapper";
+import AuthProvider from "./components/Provider";
+import AuthProxy from "./components/Proxy";
+import AuthSelect from "./components/Select";
+import AuthTab from "./components/Tab";
+import AuthTable from "./components/Table";
 import type { WrapperProps } from "./components/Wrapper";
-import Wrapper from "./components/Wrapper";
+import AuthWrapper from "./components/Wrapper";
 
 type AuthProps = WrapperProps;
 function Auth(prop: AuthProps) {
-  return <Wrapper {...prop} />;
+  return <AuthWrapper {...prop} />;
 }
 
-Auth.Provider = Provider;
-Auth.Proxy = Proxy;
-Auth.Wrapper = Wrapper;
-Auth.Button = Button;
-Auth.Deny = Deny;
-Auth.Select = Select;
-Auth.Tab = Tab;
-Auth.Table = Table;
+Auth.Provider = AuthProvider;
+Auth.Proxy = AuthProxy;
+Auth.Wrapper = AuthWrapper;
+Auth.Button = AuthButton;
+Auth.DenyWrapper = AuthDenyWrapper;
+Auth.Select = AuthSelect;
+Auth.Tab = AuthTab;
+Auth.Table = AuthTable;
 
-export { Auth };
+export {
+  Auth,
+  AuthButton,
+  AuthDenyWrapper,
+  AuthProvider,
+  AuthProxy,
+  AuthSelect,
+  AuthTab,
+  AuthTable,
+  AuthWrapper,
+};
 export default Auth;
 export type { ButtonProps } from "./components/Button";
-export type { DenyProps } from "./components/Deny";
+export type { DenyWrapperProps } from "./components/DenyWrapper";
 export type { ProviderProps } from "./components/Provider";
 export type { ProxyProps } from "./components/Proxy";
 export type { SelectProps } from "./components/Select";

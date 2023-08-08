@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Auth, DenyProps } from "../core";
+import { Auth, DenyWrapperProps } from "../core";
 
 const meta = {
-  title: "Auth.Deny",
-  component: Auth.Deny,
+  title: "Auth.DenyWrapper",
+  component: Auth.DenyWrapper,
   tags: ["autodocs"],
-} satisfies Meta<typeof Auth.Deny>;
+} satisfies Meta<typeof Auth.DenyWrapper>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -16,7 +16,7 @@ const authConfig = {
   "user.edit": true,
 };
 
-const WrapperExample = (args: DenyProps) => {
+const WrapperExample = (args: DenyWrapperProps) => {
   return (
     <Auth.Provider auth={authConfig}>
       <p>已知您有以下权限: </p>
@@ -29,7 +29,7 @@ const WrapperExample = (args: DenyProps) => {
         尝试在编辑区修改 <code>authCode</code> 为 <code> user.deny </code>
         以屏蔽以下内容 ⬇️
       </p>
-      <Auth.Deny {...args}>{args.children}</Auth.Deny>
+      <Auth.DenyWrapper {...args}>{args.children}</Auth.DenyWrapper>
     </Auth.Provider>
   );
 };

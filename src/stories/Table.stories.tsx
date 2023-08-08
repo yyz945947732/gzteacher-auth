@@ -40,7 +40,7 @@ Select.args = {
     {
       dataIndex: "name",
       title: "姓名",
-      auth: 'table.col1',
+      auth: "table.col1",
     },
     {
       dataIndex: "contact",
@@ -59,17 +59,17 @@ Select.args = {
           title: "邮箱",
         },
       ],
-      auth: 'table.col2',
+      auth: "table.col2",
     },
     {
       dataIndex: "duty",
       title: "职务",
-      auth: 'table.col3',
+      auth: "table.col3",
     },
     {
       dataIndex: "sex",
       title: "性别",
-      auth: 'table.col4',
+      auth: "table.col4",
     },
   ],
   dataSource: [

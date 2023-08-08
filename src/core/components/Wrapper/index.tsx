@@ -12,7 +12,7 @@ export interface WrapperProps {
 
 function Wrapper(props: WrapperProps) {
   useDetect(Wrapper.name);
-  
+
   const { authCode, children } = props;
   const canRender = useMatchAuth(authCode);
   return <>{canRender ? children : <></>}</>;
