@@ -19,6 +19,7 @@
   - _Provider_: 定义权限组件上下文
   - _Wrapper_: 有权限时展示组件内容
   - _DenyWrapper_: 有权限时不展示组件内容
+  - _RouteGuard_: 路由权限拦截
 - 🐯 **组件**: 对`@alifd/next`的常用组件扩展了基本权限逻辑
   - _Button_: 无权限时展示为文本
   - _Select_: 下拉框不展示无权限的选项
@@ -31,7 +32,7 @@
   - _useMatchAuth_: 返回是否有对应权限
   - _useAuthData_: 返回有权限的集合数据
 - 🌲 **树形**: 权限功能支持树形结构
-  - _useAuthData_、_Select_、_Table_ ...
+  - _useAuthData_、_Select_、_Table_、_RouteGuard_ ...
 
 ## Install
 

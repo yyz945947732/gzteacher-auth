@@ -2,6 +2,7 @@ import AuthButton from "./components/Button";
 import AuthDenyWrapper from "./components/DenyWrapper";
 import AuthProvider from "./components/Provider";
 import AuthProxy from "./components/Proxy";
+import AuthRouteGuard from "./components/RouteGuard";
 import AuthSelect from "./components/Select";
 import AuthTab from "./components/Tab";
 import AuthTable from "./components/Table";
@@ -21,6 +22,7 @@ Auth.DenyWrapper = AuthDenyWrapper;
 Auth.Select = AuthSelect;
 Auth.Tab = AuthTab;
 Auth.Table = AuthTable;
+Auth.RouteGuard = AuthRouteGuard;
 
 export {
   Auth,
@@ -28,6 +30,7 @@ export {
   AuthDenyWrapper,
   AuthProvider,
   AuthProxy,
+  AuthRouteGuard,
   AuthSelect,
   AuthTab,
   AuthTable,
@@ -38,6 +41,7 @@ export type { ButtonProps } from "./components/Button";
 export type { DenyWrapperProps } from "./components/DenyWrapper";
 export type { ProviderProps } from "./components/Provider";
 export type { ProxyProps } from "./components/Proxy";
+export type { RouteGuardProps } from "./components/RouteGuard";
 export type { SelectProps } from "./components/Select";
 export type { TabProps } from "./components/Tab";
 export type { TableProps } from "./components/Table";

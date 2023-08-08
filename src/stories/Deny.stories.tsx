@@ -16,7 +16,7 @@ const authConfig = {
   "user.edit": true,
 };
 
-const WrapperExample = (args: DenyWrapperProps) => {
+const DenyWrapperExample = (args: DenyWrapperProps) => {
   return (
     <Auth.Provider auth={authConfig}>
       <p>已知您有以下权限: </p>
@@ -34,8 +34,8 @@ const WrapperExample = (args: DenyWrapperProps) => {
   );
 };
 
-export const Wrapper = WrapperExample.bind({}) as Story;
-Wrapper.args = {
+export const DenyWrapper = DenyWrapperExample.bind({}) as Story;
+DenyWrapper.args = {
   authCode: "user.watch",
   children: <h1>？！你不应该看到我，赶紧把我隐藏了...</h1>,
 };

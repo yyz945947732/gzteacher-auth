@@ -34,8 +34,8 @@ const TableExample = (args: TableProps) => {
   );
 };
 
-export const Select = TableExample.bind({}) as Story;
-Select.args = {
+export const Table = TableExample.bind({}) as Story;
+Table.args = {
   columns: [
     {
       dataIndex: "name",
