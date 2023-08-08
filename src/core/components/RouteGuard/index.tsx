@@ -24,7 +24,7 @@ function RouteGuard(props: RouteGuardProps) {
       `请在 react-router-dom 的 <Router /> 组件中使用 Auth.${RouteGuard.name} 组件。@see https://reactrouter.com/en/main/router-components/router。
       `
     );
-    return children;
+    return <>{children}</>;
   }
 
   const location = useLocation();
@@ -43,7 +43,7 @@ function RouteGuard(props: RouteGuardProps) {
     }
   }, [location, allowRoutes]);
 
-  return isAllow ? children : NoAuthFallback;
+  return <>{isAllow ? children : NoAuthFallback}</>;
 }
 
 export default RouteGuard;
