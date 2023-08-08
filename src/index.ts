@@ -19,4 +19,4 @@ export {
   AuthWrapper,
 } from "./core";
 export { default as Auth } from "./core";
-export { useAuthData, useMatchAuth } from "./core";
+export { useAuth, useAuthData, useMatchAuth } from "./core";

@@ -42,5 +42,6 @@ export type { SelectProps } from "./components/Select";
 export type { TabProps } from "./components/Tab";
 export type { TableProps } from "./components/Table";
 export type { WrapperProps } from "./components/Wrapper";
+export { useAuth } from "./hooks/useAuth";
 export { useAuthData } from "./hooks/useAuthData";
 export { useMatchAuth } from "./hooks/useMatchAuth";
