@@ -10,9 +10,12 @@ import { isMatchAuth } from "../utils";
 interface Options {
   /** 是否支持树形结构 */
   isTree?: boolean;
+  /** 子节点字段，默认为 `children` */
+  childrenKey?: string;
 }
 const defaultOptions: Options = {
   isTree: true,
+  childrenKey: "children",
 };
 
 /** 获取根据权限过滤的集合 */
@@ -32,7 +35,7 @@ export function useAuthData(data?: any[], options?: Options) {
   }
 
   const authorizedData = combineOptions?.isTree
-    ? filter(data, filterFn)
+    ? filter(data, filterFn, { childrenKey: combineOptions.childrenKey })
     : data.filter(filterFn);
 
   function mapFn(item: any) {
@@ -40,7 +43,7 @@ export function useAuthData(data?: any[], options?: Options) {
   }
 
   const purifiedData: any[] = combineOptions?.isTree
-    ? map(authorizedData, mapFn)
+    ? map(authorizedData, mapFn, { childrenKey: combineOptions.childrenKey })
     : authorizedData.map(mapFn);
 
   return purifiedData;
