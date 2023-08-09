@@ -2,7 +2,7 @@ import "@alifd/next/lib/message/style2";
 
 import { Message } from "@alifd/next";
 import type { Meta, StoryObj } from "@storybook/react";
-import { HashRouter, Link, Route, Routes } from "react-router-dom";
+import { HashRouter, Link, Route, Routes } from "react-router-dom6";
 
 import { Auth, RouteGuardProps } from "../core";
 
@@ -26,8 +26,8 @@ const RouteGuardExample = (args: RouteGuardProps) => {
     <HashRouter>
       <Message type="warning">
         RouteGuard 仅提供路由权限拦截功能，不包含路由功能，且需要确保组件在
-        react-router-dom Router 上下文中使用。如果你在使用 ice2.js
-        框架，推荐继续使用原框架路由权限拦截功能。
+        react-router-dom V6 Router 上下文中使用。如果你在使用 ice2.js
+        框架，请继续使用原框架路由权限拦截功能。
       </Message>
       <Auth.Provider auth={authConfig}>
         <p>已知您有以下权限: </p>

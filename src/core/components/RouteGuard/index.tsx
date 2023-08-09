@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { matchRoutes, useInRouterContext, useLocation } from "react-router-dom";
+import { matchRoutes, useInRouterContext, useLocation } from "react-router-dom6";
 
 import { useAuthData } from "../../hooks/useAuthData";
 import { useDetect } from "../../hooks/useDetect";
@@ -21,7 +21,7 @@ function RouteGuard(props: RouteGuardProps) {
   const isInRouter = useInRouterContext();
   if (!isInRouter) {
     console.warn(
-      `请在 react-router-dom 的 <Router /> 组件中使用 Auth.${RouteGuard.name} 组件。@see https://reactrouter.com/en/main/router-components/router。
+      `请在 react-router-dom V6 的 <Router /> 组件中使用 Auth.${RouteGuard.name} 组件。如果你不是使用 V6 版本请不要使用这个组件。@see https://reactrouter.com/en/main/router-components/router。
       `
     );
     return <>{children}</>;
