@@ -8,9 +8,12 @@
 
 > 基于 @alifd/next 的权限相关组件
 
-<p>
+<p align="center">
   <a href="https://www.npmjs.com/package/@gzteacher/auth">
     <img src="https://badgen.net/npm/v/@gzteacher/auth" alt="Version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@gzteacher/auth">
+    <img src="https://img.shields.io/npm/dm/@gzteacher/auth.svg" alt="download" />
   </a>
   <a href="https://github.com/yyz945947732/gzteacher-auth/pulls">
     <img
@@ -26,7 +29,7 @@
   </a>
 </p>
 
-[📚 在线文档](https://64cca10e002c2d1cef000809-lfrtixmqur.chromatic.com/)
+[📚 在线文档](https://64cca10e002c2d1cef000809-timgsrlozt.chromatic.com/)
 
 ## Features
 
