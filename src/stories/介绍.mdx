@@ -9,7 +9,9 @@
 > 基于 @alifd/next 的权限相关组件
 
 <p>
-  <a href="https://www.npmjs.com/package/@gzteacher/auth"><img src="https://badgen.net/npm/v/@gzteacher/auth" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/@gzteacher/auth">
+    <img src="https://badgen.net/npm/v/@gzteacher/auth" alt="Version" />
+  </a>
   <a href="https://github.com/yyz945947732/gzteacher-auth/pulls">
     <img
       src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"

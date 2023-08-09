@@ -46,7 +46,7 @@
     "build-storybook": "storybook build",
     "prettier": "prettier src --write",
     "eslint": "eslint src --fix",
-    "ling-staged": "ling-staged",
+    "lint-staged": "lint-staged",
     "prepare": "husky install",
     "doc": "npx chromatic --exit-zero-on-changes --project-token=chpt_3fa355f3ad9caaa -d storybook-static/"
   },
