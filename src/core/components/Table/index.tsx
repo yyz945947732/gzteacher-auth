@@ -1,4 +1,4 @@
-import "@alifd/next/lib/table/style2";
+import "@alifd/next/es/table/style2";
 
 import { Table as TableComponent } from "@alifd/next";
 import type { TableProps as TableComponentProps } from "@alifd/next/types/table/index";

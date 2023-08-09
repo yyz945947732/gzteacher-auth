@@ -1,4 +1,4 @@
-import "@alifd/next/lib/button/style2";
+import "@alifd/next/es/button/style2";
 
 import { Button as ButtonComponent } from "@alifd/next";
 import type { ButtonProps as ButtonComponentProps } from "@alifd/next/types/button/index";

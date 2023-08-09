@@ -1,4 +1,4 @@
-import "@alifd/next/lib/select/style2";
+import "@alifd/next/es/select/style2";
 
 import { Select as SelectComponent } from "@alifd/next";
 import type { SelectProps as SelectComponentProps } from "@alifd/next/types/select/index";

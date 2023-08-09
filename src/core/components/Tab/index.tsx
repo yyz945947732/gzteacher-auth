@@ -1,4 +1,4 @@
-import "@alifd/next/lib/tab/style2";
+import "@alifd/next/es/tab/style2";
 
 import { Tab as TabComponent } from "@alifd/next";
 import type {
