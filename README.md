@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@gzteacher/auth">
-    <img src="https://badgen.net/npm/v/@gzteacher/auth" alt="Version" />
+    <img src="https://img.shields.io/npm/v/@gzteacher/auth.svg" alt="Version" />
   </a>
   <a href="https://www.npmjs.com/package/@gzteacher/auth">
     <img src="https://img.shields.io/npm/dm/@gzteacher/auth.svg" alt="download" />
