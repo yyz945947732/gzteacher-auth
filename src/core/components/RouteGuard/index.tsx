@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { matchRoutes, useInRouterContext, useLocation } from "react-router-dom6";
+import {
+  matchRoutes,
+  useInRouterContext,
+  useLocation,
+} from "react-router-dom6";
 
 import { useAuthData } from "../../hooks/useAuthData";
 import { useDetect } from "../../hooks/useDetect";
