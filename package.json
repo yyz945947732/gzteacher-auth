@@ -12,7 +12,8 @@
     "@gzteacher",
     "ice",
     "react",
-    "react-components"
+    "react-components",
+    "ice-components"
   ],
   "license": "MIT",
   "module": "es/index.js",
