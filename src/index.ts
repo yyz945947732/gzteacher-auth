@@ -1,6 +1,8 @@
 export type {
   ButtonProps,
   DenyWrapperProps,
+  MenuItemProps,
+  MenuProps,
   ProviderProps,
   ProxyProps,
   RouteGuardProps,
@@ -12,6 +14,7 @@ export type {
 export {
   AuthButton,
   AuthDenyWrapper,
+  AuthMenu,
   AuthProvider,
   AuthProxy,
   AuthRouteGuard,
