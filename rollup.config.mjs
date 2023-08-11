@@ -1,11 +1,11 @@
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import nodeResolve from "@rollup/plugin-node-resolve";
+import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 import { readFileSync } from "fs";
 import path from "path";
 import externals from "rollup-plugin-node-externals";
-import { terser } from "rollup-plugin-terser";
 
 const pkg = JSON.parse(
   readFileSync(new URL("./package.json", import.meta.url), "utf8")
