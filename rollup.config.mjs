@@ -1,10 +1,15 @@
 import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
+import { readFileSync } from "fs";
 import path from "path";
 import externals from "rollup-plugin-node-externals";
+import { terser } from "rollup-plugin-terser";
 
-import pkg from "./package.json" assert { type: "json" };
+const pkg = JSON.parse(
+  readFileSync(new URL("./package.json", import.meta.url), "utf8")
+);
 
 export default [
   {
@@ -20,21 +25,19 @@ export default [
       },
     ],
     plugins: [
-      // 自动将 dependencies 依赖声明为 externals
+      json(),
       externals({
         devDeps: false,
       }),
-      // 处理外部依赖
       resolve(),
-      // 支持基于 CommonJS 模块引入
       commonjs(),
-      // 支持 typescript，并导出声明文件
       typescript({
         outDir: "es",
         declaration: true,
         declarationDir: "es",
         exclude: "src/stories/*",
       }),
+      terser(),
     ],
   },
 ];
