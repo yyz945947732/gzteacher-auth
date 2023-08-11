@@ -1,6 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
-import resolve from "@rollup/plugin-node-resolve";
+import nodeResolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import { readFileSync } from "fs";
 import path from "path";
@@ -29,7 +29,7 @@ export default [
       externals({
         devDeps: false,
       }),
-      resolve(),
+      nodeResolve(),
       commonjs(),
       typescript({
         outDir: "es",
