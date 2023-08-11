@@ -39,12 +39,6 @@
     "lint-staged": "lint-staged",
     "prepare": "husky install"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "plugin:storybook/recommended"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
