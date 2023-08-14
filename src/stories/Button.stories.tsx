@@ -33,10 +33,12 @@ const ButtonExample = (args: ButtonProps) => {
   );
 };
 
-export const Button = ButtonExample.bind({}) as Story;
-Button.args = {
-  authCode: "user.noAuth",
-  children: "点我",
-  onClick: () => window.alert("您的电脑即将爆炸"),
-  type: "primary",
+export const Button: Story = {
+  render: ButtonExample,
+  args: {
+    authCode: "user.noAuth",
+    children: "点我",
+    onClick: () => window.alert("您的电脑即将爆炸"),
+    type: "primary",
+  },
 };

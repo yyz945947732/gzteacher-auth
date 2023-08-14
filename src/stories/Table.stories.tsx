@@ -34,52 +34,54 @@ const TableExample = (args: TableProps) => {
   );
 };
 
-export const Table = TableExample.bind({}) as Story;
-Table.args = {
-  columns: [
-    {
-      dataIndex: "name",
-      title: "姓名",
-      auth: "table.col1",
-    },
-    {
-      dataIndex: "contact",
-      title: "联系方式",
-      children: [
-        {
-          dataIndex: "phone",
-          title: "移动电话",
-        },
-        {
-          dataIndex: "landline",
-          title: "座机",
-        },
-        {
-          dataIndex: "email",
-          title: "邮箱",
-        },
-      ],
-      auth: "table.col2",
-    },
-    {
-      dataIndex: "duty",
-      title: "职务",
-      auth: "table.col3",
-    },
-    {
-      dataIndex: "sex",
-      title: "性别",
-      auth: "table.col4",
-    },
-  ],
-  dataSource: [
-    {
-      name: "龙啸天",
-      phone: "18888888888",
-      landline: "110",
-      email: "18888888888@qq.com",
-      duty: "监狱长",
-      sex: "不明",
-    },
-  ],
+export const Table: Story = {
+  render: TableExample,
+  args: {
+    columns: [
+      {
+        dataIndex: "name",
+        title: "姓名",
+        auth: "table.col1",
+      },
+      {
+        dataIndex: "contact",
+        title: "联系方式",
+        children: [
+          {
+            dataIndex: "phone",
+            title: "移动电话",
+          },
+          {
+            dataIndex: "landline",
+            title: "座机",
+          },
+          {
+            dataIndex: "email",
+            title: "邮箱",
+          },
+        ],
+        auth: "table.col2",
+      },
+      {
+        dataIndex: "duty",
+        title: "职务",
+        auth: "table.col3",
+      },
+      {
+        dataIndex: "sex",
+        title: "性别",
+        auth: "table.col4",
+      },
+    ],
+    dataSource: [
+      {
+        name: "龙啸天",
+        phone: "18888888888",
+        landline: "110",
+        email: "18888888888@qq.com",
+        duty: "监狱长",
+        sex: "不明",
+      },
+    ],
+  },
 };

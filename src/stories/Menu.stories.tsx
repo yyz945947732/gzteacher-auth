@@ -35,55 +35,57 @@ const MenuExample = (args: MenuProps) => {
   );
 };
 
-export const Menu = MenuExample.bind({}) as Story;
-Menu.args = {
-  menuItems: [
-    {
-      label: "支付方式",
-      type: "group",
-      auth: "menu.pay",
-      children: [
-        {
-          label: "微信",
-          key: "wechat",
-          auth: "menu.wechat",
-        },
-        {
-          label: "支付宝",
-          key: "alipay",
-          auth: "menu.alipay",
-        },
-      ],
-    },
-    {
-      label: "购物平台",
-      type: "group",
-      auth: "menu.platform",
-      children: [
-        {
-          label: "美团",
-          key: "meituan",
-          auth: "menu.meituan",
-        },
-        {
-          label: "淘宝",
-          key: "taobao",
-          auth: "menu.taobao",
-          type: "subMenu",
-          children: [
-            {
-              label: "淘宝网站",
-              key: "taobao.web",
-              auth: "menu.taobao.web",
-            },
-            {
-              label: "淘宝APP",
-              key: "taobao.app",
-              auth: "menu.taobao.app",
-            },
-          ],
-        },
-      ],
-    },
-  ],
+export const Menu: Story = {
+  render: MenuExample,
+  args: {
+    menuItems: [
+      {
+        label: "支付方式",
+        type: "group",
+        auth: "menu.pay",
+        children: [
+          {
+            label: "微信",
+            key: "wechat",
+            auth: "menu.wechat",
+          },
+          {
+            label: "支付宝",
+            key: "alipay",
+            auth: "menu.alipay",
+          },
+        ],
+      },
+      {
+        label: "购物平台",
+        type: "group",
+        auth: "menu.platform",
+        children: [
+          {
+            label: "美团",
+            key: "meituan",
+            auth: "menu.meituan",
+          },
+          {
+            label: "淘宝",
+            key: "taobao",
+            auth: "menu.taobao",
+            type: "subMenu",
+            children: [
+              {
+                label: "淘宝网站",
+                key: "taobao.web",
+                auth: "menu.taobao.web",
+              },
+              {
+                label: "淘宝APP",
+                key: "taobao.app",
+                auth: "menu.taobao.app",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 };

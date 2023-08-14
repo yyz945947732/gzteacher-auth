@@ -57,32 +57,34 @@ const RouteGuardExample = (args: RouteGuardProps) => {
   );
 };
 
-export const RouteGuard = RouteGuardExample.bind({}) as Story;
-RouteGuard.args = {
-  routes: [
-    {
-      path: "/",
-      auth: "page.index",
-    },
-    {
-      path: "/about",
-      auth: "page.about",
-    },
-    {
-      path: "/info",
-      auth: "page.info",
-    },
-    {
-      path: "/secret",
-      auth: "page.secret",
-    },
-  ],
-  children: (
-    <Routes>
-      <Route path="/" element={<h1>index</h1>} />
-      <Route path="/about" element={<h1>about</h1>} />
-      <Route path="/info" element={<h1>info</h1>} />
-      <Route path="/secret" element={<h1>secret</h1>} />
-    </Routes>
-  ),
+export const RouteGuard: Story = {
+  render: RouteGuardExample,
+  args: {
+    routes: [
+      {
+        path: "/",
+        auth: "page.index",
+      },
+      {
+        path: "/about",
+        auth: "page.about",
+      },
+      {
+        path: "/info",
+        auth: "page.info",
+      },
+      {
+        path: "/secret",
+        auth: "page.secret",
+      },
+    ],
+    children: (
+      <Routes>
+        <Route path="/" element={<h1>index</h1>} />
+        <Route path="/about" element={<h1>about</h1>} />
+        <Route path="/info" element={<h1>info</h1>} />
+        <Route path="/secret" element={<h1>secret</h1>} />
+      </Routes>
+    ),
+  },
 };

@@ -34,8 +34,10 @@ const DenyWrapperExample = (args: DenyWrapperProps) => {
   );
 };
 
-export const DenyWrapper = DenyWrapperExample.bind({}) as Story;
-DenyWrapper.args = {
-  authCode: "user.watch",
-  children: <h1>？！你不应该看到我，赶紧把我隐藏了...</h1>,
+export const DenyWrapper: Story = {
+  render: DenyWrapperExample,
+  args: {
+    authCode: "user.watch",
+    children: <h1>？！你不应该看到我，赶紧把我隐藏了...</h1>,
+  },
 };

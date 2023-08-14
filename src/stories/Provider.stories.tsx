@@ -27,17 +27,19 @@ const ProviderExample = (args: ProviderProps) => {
   );
 };
 
-export const Provider = ProviderExample.bind({}) as Story;
-Provider.args = {
-  auth: authConfig,
-  children: (
-    <div>
-      <Auth.Wrapper authCode="user.watch">
-        <p>有权限的就能看到这句话</p>
-      </Auth.Wrapper>
-      <Auth.Button authCode="user.add" type="primary">
-        有权限的就能看到这个按钮
-      </Auth.Button>
-    </div>
-  ),
+export const Provider: Story = {
+  render: ProviderExample,
+  args: {
+    auth: authConfig,
+    children: (
+      <div>
+        <Auth.Wrapper authCode="user.watch">
+          <p>有权限的就能看到这句话</p>
+        </Auth.Wrapper>
+        <Auth.Button authCode="user.add" type="primary">
+          有权限的就能看到这个按钮
+        </Auth.Button>
+      </div>
+    ),
+  },
 };

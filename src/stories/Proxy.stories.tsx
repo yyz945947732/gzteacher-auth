@@ -33,14 +33,16 @@ const ProxyExample = (args: ProxyProps) => {
   );
 };
 
-export const Proxy = ProxyExample.bind({}) as Story;
-Proxy.args = {
-  authProxy: {
-    "user.proxy": "user.noAuth",
+export const Proxy: Story = {
+  render: ProxyExample,
+  args: {
+    authProxy: {
+      "user.proxy": "user.noAuth",
+    },
+    children: (
+      <Auth.Wrapper authCode="user.proxy">
+        代理成功，你拥有了 <code>user.watch</code> 权限。
+      </Auth.Wrapper>
+    ),
   },
-  children: (
-    <Auth.Wrapper authCode="user.proxy">
-      代理成功，你拥有了 <code>user.watch</code> 权限。
-    </Auth.Wrapper>
-  ),
 };
