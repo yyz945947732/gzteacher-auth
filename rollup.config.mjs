@@ -35,7 +35,7 @@ export default [
         outDir: "es",
         declaration: true,
         declarationDir: "es",
-        exclude: "src/stories/*",
+        exclude: ["src/stories/*", "src/test/*", "src/scripts/*"],
       }),
       terser(),
     ],
