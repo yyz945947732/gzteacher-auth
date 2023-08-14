@@ -7,7 +7,6 @@ import type {
   MenuProps as MenuComponentProps,
   SubMenuProps as SubMenuComponentProps,
 } from "@alifd/next/types/menu/index";
-import React from "react";
 
 import { useAuthData } from "../../hooks/useAuthData";
 import { useDetect } from "../../hooks/useDetect";

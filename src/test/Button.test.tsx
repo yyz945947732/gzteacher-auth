@@ -19,15 +19,15 @@ function ButtonExample({ authCode }: ButtonProps) {
 describe("Auth.Button", () => {
   test("Check if Button display as button with auth", () => {
     const { container } = render(<ButtonExample authCode="user.edit" />);
-    const text = container.innerHTML;
-    expect(text).toContain("</button>");
-    expect(text).toContain(TEST_TEXT);
+    const html = container.innerHTML;
+    expect(html).toContain("</button>");
+    expect(html).toContain(TEST_TEXT);
   });
 
   test("Check if Button display as text without auth", () => {
     const { container } = render(<ButtonExample authCode="user.noAuth" />);
-    const text = container.innerHTML;
-    expect(text).not.toContain("</button>");
-    expect(text).toContain(TEST_TEXT);
+    const html = container.innerHTML;
+    expect(html).not.toContain("</button>");
+    expect(html).toContain(TEST_TEXT);
   });
 });

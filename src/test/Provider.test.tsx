@@ -19,8 +19,8 @@ function ProviderExample({ auth }: ProviderProps) {
 describe("Auth.Provider", () => {
   test("Checks Wrapper inside Provider without auth should be hidden", () => {
     const { container } = render(<ProviderExample auth={{}} />);
-    const text = container.innerHTML;
-    expect(text).not.toContain(TEXT_INSIDE_PROVIDER);
+    const html = container.innerHTML;
+    expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
   });
 
   test("Checks Wrapper inside Provider with auth should still display", () => {
@@ -31,7 +31,7 @@ describe("Auth.Provider", () => {
         }}
       />
     );
-    const text = container.innerHTML;
-    expect(text).toContain(TEXT_INSIDE_PROVIDER);
+    const html = container.innerHTML;
+    expect(html).toContain(TEXT_INSIDE_PROVIDER);
   });
 });

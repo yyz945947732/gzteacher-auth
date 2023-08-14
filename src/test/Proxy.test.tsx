@@ -27,8 +27,8 @@ describe("Auth.Proxy", () => {
         }}
       />
     );
-    const text = container.innerHTML;
-    expect(text).toContain(TEST_TEXT);
+    const html = container.innerHTML;
+    expect(html).toContain(TEST_TEXT);
   });
 
   test("Checks Wrapper's children hidden when proxy to wrong auth", () => {
@@ -39,7 +39,7 @@ describe("Auth.Proxy", () => {
         }}
       />
     );
-    const text = container.innerHTML;
-    expect(text).not.toContain(TEST_TEXT);
+    const html = container.innerHTML;
+    expect(html).not.toContain(TEST_TEXT);
   });
 });

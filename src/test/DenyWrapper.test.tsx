@@ -19,13 +19,13 @@ function DenyWrapperExample({ authCode }: DenyWrapperProps) {
 describe("Auth.DenyWrapper", () => {
   test("Checks DenyWrapper's children display without auth", () => {
     const { container } = render(<DenyWrapperExample authCode="user.watch" />);
-    const text = container.innerHTML;
-    expect(text).toEqual(TEST_TEXT);
+    const html = container.innerHTML;
+    expect(html).toEqual(TEST_TEXT);
   });
 
   test("Checks DenyWrapper's children hidden with auth", () => {
     const { container } = render(<DenyWrapperExample authCode="user.deny" />);
-    const text = container.innerHTML;
-    expect(text).not.toEqual(TEST_TEXT);
+    const html = container.innerHTML;
+    expect(html).not.toEqual(TEST_TEXT);
   });
 });

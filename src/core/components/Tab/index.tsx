@@ -11,6 +11,7 @@ import { useDetect } from "../../hooks/useDetect";
 
 export interface ItemProps extends ItemComponentProps {
   auth?: string | string[];
+  key?: React.Key;
 }
 
 export interface TabProps extends TabComponentProps {
@@ -28,7 +29,7 @@ function Tab(prop: TabProps) {
   return (
     <TabComponent {...otherProps}>
       {authTabItems?.map((item) => (
-        <TabComponent.Item key={item.title} {...item} />
+        <TabComponent.Item key={item.key} {...item} />
       ))}
     </TabComponent>
   );

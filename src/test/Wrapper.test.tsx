@@ -20,13 +20,13 @@ function WrapperExample({ authCode }: WrapperProps) {
 describe("Auth.Wrapper", () => {
   test("Checks Wrapper's children display with auth", () => {
     const { container } = render(<WrapperExample authCode="user.watch" />);
-    const text = container.innerHTML;
-    expect(text).toEqual(TEST_TEXT);
+    const html = container.innerHTML;
+    expect(html).toEqual(TEST_TEXT);
   });
 
   test("Checks Wrapper's children hidden without auth", () => {
     const { container } = render(<WrapperExample authCode="user.noAuth" />);
-    const text = container.innerHTML;
-    expect(text).not.toEqual(TEST_TEXT);
+    const html = container.innerHTML;
+    expect(html).not.toEqual(TEST_TEXT);
   });
 });
