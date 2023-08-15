@@ -15,6 +15,12 @@
   <a href="https://www.npmjs.com/package/@gzteacher/auth">
     <img src="https://img.shields.io/npm/dm/@gzteacher/auth.svg" alt="download" />
   </a>
+  <a href="https://coveralls.io/github/yyz945947732/gzteacher-auth?branch=master">
+    <img
+      src="https://coveralls.io/repos/github/yyz945947732/gzteacher-auth/badge.svg?branch=master"
+      alt="Coverage Status"
+    />
+  </a>
   <a href="https://github.com/yyz945947732/gzteacher-auth/pulls">
     <img
       src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"
