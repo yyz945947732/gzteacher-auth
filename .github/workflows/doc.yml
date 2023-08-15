@@ -18,12 +18,9 @@ jobs:
               run: yarn test
 
             - name: Code coverage
-              uses: codecov/codecov-action@v3
+              uses: coverallsapp/github-action@master
               with:
-                  name: "codecov-auth"
-                  fail_ci_if_error: true
-                  verbose: true
-                  token: ${{ secrets.CODECOV_TOKEN }}
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Doc
               uses: chromaui/action@v1

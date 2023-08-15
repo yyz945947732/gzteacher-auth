@@ -38,7 +38,8 @@
     "fix": "prettier src --write & eslint src --fix",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "browserslist": {
     "production": [

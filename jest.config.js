@@ -2,7 +2,7 @@
 module.exports = {
   clearMocks: true,
   collectCoverage: true,
-  collectCoverageFrom: ["<rootDir>/src/**/*.(ts|tsx)"],
+  collectCoverageFrom: ["<rootDir>/src/core/**/*.(ts|tsx)"],
   coverageDirectory: "coverage",
   coveragePathIgnorePatterns: ["<rootDir>/node_modules/"],
   coverageReporters: ["text", "lcov"],
