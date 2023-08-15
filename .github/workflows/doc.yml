@@ -26,4 +26,7 @@ jobs:
             - name: Code coverage
               uses: codecov/codecov-action@v3
               with:
-                token: ${{ secrets.CODECOV_TOKEN }}
+                  name: "codecov-auth"
+                  fail_ci_if_error: true
+                  verbose: true
+                  token: ${{ secrets.CODECOV_TOKEN }}
