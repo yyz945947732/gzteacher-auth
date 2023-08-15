@@ -23,7 +23,6 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-                  fail-on-error: true
 
             - name: Doc
               uses: chromaui/action@v1
