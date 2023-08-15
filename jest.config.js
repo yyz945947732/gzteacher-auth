@@ -8,9 +8,6 @@ module.exports = {
   coverageReporters: ["text", "lcov"],
   moduleDirectories: ["node_modules"],
   moduleFileExtensions: ["js", "json", "ts", "tsx"],
-  moduleNameMapper: {
-    "^lodash-es$": "lodash",
-  },
   testEnvironment: "jest-environment-jsdom",
   testEnvironmentOptions: {
     url: "http://localhost",

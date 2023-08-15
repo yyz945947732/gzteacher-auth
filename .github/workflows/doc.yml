@@ -1,0 +1,29 @@
+name: "Chromatic and Coveralls"
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [18.x]
+        steps:
+            - uses: actions/checkout@v1
+            - run: yarn
+
+            - name: Doc
+              uses: chromaui/action@v1
+              with:
+                  projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Test
+              run: yarn jest
+
+            - name: Code coverage
+              uses: codecov/codecov-action@v3
+              with:
+                token: ${{ secrets.CODECOV_TOKEN }}
