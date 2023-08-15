@@ -15,12 +15,15 @@ jobs:
             - run: yarn
 
             - name: Test
-              run: yarn jest
+              run: yarn test
 
             - name: Code coverage
-              uses: coverallsapp/github-action@master
+              uses: codecov/codecov-action@v3
               with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  name: "codecov-auth"
+                  fail_ci_if_error: true
+                  verbose: true
+                  token: ${{ secrets.CODECOV_TOKEN }}
 
             - name: Doc
               uses: chromaui/action@v1
