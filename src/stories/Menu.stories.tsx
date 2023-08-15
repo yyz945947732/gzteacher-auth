@@ -41,8 +41,9 @@ export const Menu: Story = {
     menuItems: [
       {
         label: "支付方式",
-        type: "group",
+        itemType: "group",
         auth: "menu.pay",
+        key: "pay",
         children: [
           {
             label: "微信",
@@ -58,8 +59,9 @@ export const Menu: Story = {
       },
       {
         label: "购物平台",
-        type: "group",
+        itemType: "group",
         auth: "menu.platform",
+        key: "platform",
         children: [
           {
             label: "美团",
@@ -70,7 +72,7 @@ export const Menu: Story = {
             label: "淘宝",
             key: "taobao",
             auth: "menu.taobao",
-            type: "subMenu",
+            itemType: "subMenu",
             children: [
               {
                 label: "淘宝网站",

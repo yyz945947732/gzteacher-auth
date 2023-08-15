@@ -16,7 +16,7 @@ export interface MenuItemProps
     Omit<GroupPropsComponentProps, "children">,
     Omit<SubMenuComponentProps, "children"> {
   label?: React.ReactNode;
-  type?: "item" | "subMenu" | "group";
+  itemType?: "item" | "subMenu" | "group";
   auth?: string | string[];
   key?: React.Key;
   children?: MenuItemProps[];
@@ -27,14 +27,14 @@ export interface MenuProps extends MenuComponentProps {
 }
 
 function renderTree(menus: MenuItemProps) {
-  if (menus.type === "group") {
+  if (menus.itemType === "group") {
     return (
       <MenuComponent.Group {...menus}>
         {menus?.children?.map((item) => renderTree(item))}
       </MenuComponent.Group>
     );
   }
-  if (menus.type === "subMenu" || menus.children) {
+  if (menus.itemType === "subMenu" || menus.children) {
     return (
       <MenuComponent.SubMenu {...menus}>
         {menus?.children?.map((item) => renderTree(item))}

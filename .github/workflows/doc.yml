@@ -12,10 +12,12 @@ jobs:
                 node-version: [18.x]
         steps:
             - uses: actions/checkout@v1
-            - run: yarn
+
+            - name: Install
+              run: yarn
 
             - name: Test
-              run: yarn test
+              run: yarn test:cov
 
             - name: Code coverage
               uses: coverallsapp/github-action@master
