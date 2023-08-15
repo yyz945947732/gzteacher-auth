@@ -1,6 +1,15 @@
 {
-  "src/**/*.tsx": ["prettier --write", "eslint --fix"],
-  "src/**/*.scss": ["prettier --write"],
-  "src/**/*.mdx": ["prettier --write"],
-  "src/**/*.md": ["prettier --write"]
+    "src/**/*.tsx": [
+        "prettier --write",
+        "eslint --fix"
+    ],
+    "src/**/*.scss": [
+        "prettier --write"
+    ],
+    "src/**/*.mdx": [
+        "prettier --write"
+    ],
+    "src/**/*.md": [
+        "prettier --write"
+    ]
 }
