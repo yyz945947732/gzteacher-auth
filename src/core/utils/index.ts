@@ -7,8 +7,14 @@ export function isMatchAuth(
   if (Array.isArray(authCode)) {
     return authCode.some((code) => isMatchAuth(auth, authProxy, code));
   } else {
-    const targetAuth = authCode ? authProxy?.[authCode] || authCode : authCode;
-    const match = targetAuth ? auth[targetAuth] : true;
-    return match;
+    if (authCode === undefined || authCode === null) {
+      return true;
+    }
+    const targetAuth = authProxy?.[authCode] ?? authCode;
+    const match = auth[targetAuth];
+    if (match === true) {
+      return true;
+    }
+    return false;
   }
 }
