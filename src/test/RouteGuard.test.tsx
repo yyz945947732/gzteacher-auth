@@ -1,4 +1,4 @@
-import { fireEvent,render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { HashRouter, Link, Route, Routes } from "react-router-dom6";
 
 import { Auth } from "../index";
@@ -11,6 +11,7 @@ const PAGE_1_HTML = `<h1>${PAGE_1_CONTENT}</h1>`;
 const PAGE_2_HTML = `<h1>${PAGE_2_CONTENT}</h1>`;
 const PAGE_3_HTML = `<h1>${PAGE_3_CONTENT}</h1>`;
 const PAGE_4_HTML = `<h1>${PAGE_4_CONTENT}</h1>`;
+const NO_AUTH_CONTENT = "没权限";
 
 const ROUTES = [
   {
@@ -63,7 +64,7 @@ function RouteGuardExample() {
             </Link>
           </li>
         </ul>
-        <Auth.RouteGuard routes={ROUTES}>
+        <Auth.RouteGuard routes={ROUTES} NoAuthFallback={NO_AUTH_CONTENT}>
           <Routes>
             <Route path="/" element={<h1>{PAGE_1_CONTENT}</h1>} />
             <Route path="/about" element={<h1>{PAGE_2_CONTENT}</h1>} />
@@ -82,7 +83,7 @@ describe("Auth.RouteGuard", () => {
     const linkSecret = screen.getByTestId("secret");
     fireEvent.click(linkSecret);
     const html = container.innerHTML;
-    expect(html).toContain("403");
+    expect(html).toContain(NO_AUTH_CONTENT);
     expect(html).not.toContain(PAGE_4_HTML);
   });
   test("Check if Route's children with auth should be render", () => {
@@ -93,14 +94,14 @@ describe("Auth.RouteGuard", () => {
     fireEvent.click(indexSecret);
     let html = container.innerHTML;
     expect(html).toContain(PAGE_1_HTML);
-    expect(html).not.toContain("403");
+    expect(html).not.toContain(NO_AUTH_CONTENT);
     fireEvent.click(aboutSecret);
     html = container.innerHTML;
     expect(html).toContain(PAGE_2_HTML);
-    expect(html).not.toContain("403");
+    expect(html).not.toContain(NO_AUTH_CONTENT);
     fireEvent.click(infoSecret);
     html = container.innerHTML;
     expect(html).toContain(PAGE_3_HTML);
-    expect(html).not.toContain("403");
+    expect(html).not.toContain(NO_AUTH_CONTENT);
   });
 });
