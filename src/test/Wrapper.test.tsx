@@ -29,4 +29,12 @@ describe("Auth.Wrapper", () => {
     const html = container.innerHTML;
     expect(html).not.toEqual(TEST_TEXT);
   });
+
+  test("Checks Wrapper's children display when one of auth is match", () => {
+    const { container } = render(
+      <WrapperExample authCode={["user.noAuth", "user.watch"]} />
+    );
+    const html = container.innerHTML;
+    expect(html).toEqual(TEST_TEXT);
+  });
 });

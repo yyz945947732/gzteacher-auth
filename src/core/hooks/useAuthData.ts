@@ -31,7 +31,14 @@ export function useAuthData(data?: any[], options?: Options) {
   const { authProxy } = useContext(ProxyContext);
 
   function filterFn(item: any) {
-    return !item.auth || isMatchAuth(auth, authProxy, item.auth);
+    return (
+      !item.auth ||
+      isMatchAuth({
+        auth,
+        authProxy,
+        authCode: item.auth,
+      })
+    );
   }
 
   const authorizedData = combineOptions?.isTree

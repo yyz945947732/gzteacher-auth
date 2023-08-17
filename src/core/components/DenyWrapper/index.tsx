@@ -5,7 +5,7 @@ import { useMatchAuth } from "../../hooks/useMatchAuth";
 
 export interface DenyWrapperProps {
   /** 权限编号 */
-  authCode?: string;
+  authCode?: string | string[];
   /** 内容 */
   children?: React.ReactNode;
 }

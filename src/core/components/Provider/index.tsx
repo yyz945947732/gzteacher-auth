@@ -11,6 +11,8 @@ export interface ProviderProps {
    * }
    */
   auth?: Record<string, boolean>;
+  /** 是否关闭权限限制，默认 `false` */
+  disabled?: boolean;
 }
 
 interface ProviderContext extends Omit<ProviderProps, "children"> {
@@ -22,7 +24,7 @@ export const ProviderContext = createContext<ProviderContext>({
 });
 
 function Provider(props: ProviderProps) {
-  const { children, auth: authFromProps } = props;
+  const { children, auth: authFromProps, disabled = false } = props;
 
   const [auth, setAuth] = useState(authFromProps);
 
@@ -35,6 +37,7 @@ function Provider(props: ProviderProps) {
       value={{
         auth,
         setAuth,
+        disabled,
       }}
     >
       {children}

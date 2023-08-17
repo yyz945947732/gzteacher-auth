@@ -4,10 +4,10 @@ import { Auth, ProviderProps } from "../index";
 
 const TEXT_INSIDE_PROVIDER = "inside provider";
 
-function ProviderExample({ auth }: ProviderProps) {
+function ProviderExample({ auth, disabled }: ProviderProps) {
   return (
     <div>
-      <Auth.Provider auth={auth}>
+      <Auth.Provider auth={auth} disabled={disabled}>
         <Auth.Wrapper authCode="user.watch">
           {TEXT_INSIDE_PROVIDER}
         </Auth.Wrapper>
@@ -29,6 +29,19 @@ describe("Auth.Provider", () => {
         auth={{
           "user.watch": true,
         }}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Wrapper without auth inside Provider should display when disabled is true", () => {
+    const { container } = render(
+      <ProviderExample
+        auth={{
+          "user.edit": true,
+        }}
+        disabled
       />
     );
     const html = container.innerHTML;
