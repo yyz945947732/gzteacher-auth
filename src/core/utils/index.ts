@@ -1,6 +1,8 @@
+import type { ProviderProps } from "../index";
+
 interface Options {
   /** 权限 */
-  auth?: Record<string, boolean>;
+  auth?: ProviderProps["auth"];
   /** 权限代理 */
   authProxy?: Record<string, string>;
   /** 权限编号 */
@@ -28,6 +30,13 @@ export function isMatchAuth(options: Options): boolean {
       return true;
     }
     const targetAuth = authProxy?.[authCode] ?? authCode;
+    if (Array.isArray(auth)) {
+      return auth.includes(targetAuth);
+    }
+    if (typeof auth === "string") {
+      const authArr = auth.split(",");
+      return authArr.includes(targetAuth);
+    }
     const match = auth[targetAuth];
     if (match === true) {
       return true;

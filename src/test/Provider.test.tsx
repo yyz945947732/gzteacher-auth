@@ -47,4 +47,34 @@ describe("Auth.Provider", () => {
     const html = container.innerHTML;
     expect(html).toContain(TEXT_INSIDE_PROVIDER);
   });
+
+  test("Checks Wrapper with auth inside Provider should display when auth is Array type", () => {
+    const { container } = render(
+      <ProviderExample auth={["user.edit", "user.watch"]} />
+    );
+    const html = container.innerHTML;
+    expect(html).toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Wrapper without auth inside Provider should display when auth is Array type", () => {
+    const { container } = render(
+      <ProviderExample auth={["user.edit", "user.del"]} />
+    );
+    const html = container.innerHTML;
+    expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Wrapper with auth inside Provider should display when auth is String type", () => {
+    const { container } = render(
+      <ProviderExample auth="user.watch,user.edit" />
+    );
+    const html = container.innerHTML;
+    expect(html).toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Wrapper without auth inside Provider should display when auth is String type", () => {
+    const { container } = render(<ProviderExample auth="user.edit,user.del" />);
+    const html = container.innerHTML;
+    expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
+  });
 });

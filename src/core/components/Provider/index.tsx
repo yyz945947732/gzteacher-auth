@@ -9,8 +9,12 @@ export interface ProviderProps {
    *    "user.add": true,
    *    "user.edit": true,
    * }
+   * // or
+   * ["user.add", "user.edit"]
+   * // or
+   * "user.add,user.edit"
    */
-  auth?: Record<string, boolean>;
+  auth?: Record<string, boolean> | string[] | string;
   /** 是否关闭权限限制，默认 `false` */
   disabled?: boolean;
 }
