@@ -78,7 +78,7 @@ yarn add @gzteacher/auth
 
 ## Usage
 
-Wrap with `Auth.Provider` component to use authorization related components.
+Wrap with `Auth.Provider` component to use.
 
 ```typescript
 // index.tsx
@@ -113,7 +113,7 @@ function Layout() {
 }
 ```
 
-##### used in ice2.js
+##### use in ice2.js
 
 ```typescript
 // app.tsx
