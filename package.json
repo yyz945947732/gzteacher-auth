@@ -1,6 +1,6 @@
 {
   "name": "@gzteacher/auth",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "yyz945947732 <945947732@qq.com>",
   "description": "auth components base on @alifd/next",
   "homepage": "https://github.com/yyz945947732/gzteacher-auth",
