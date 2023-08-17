@@ -10,11 +10,13 @@ import { useAuthData } from "../../hooks/useAuthData";
 import { useDetect } from "../../hooks/useDetect";
 
 export interface ItemProps extends ItemComponentProps {
+  /** 权限编号 */
   auth?: string | string[];
   key?: React.Key;
 }
 
 export interface TabProps extends TabComponentProps {
+  /** 选项卡项目 */
   tabItems?: ItemProps[];
 }
 

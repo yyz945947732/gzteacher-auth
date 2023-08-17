@@ -23,6 +23,7 @@ export interface MenuItemProps
 }
 
 export interface MenuProps extends MenuComponentProps {
+  /** 菜单项 */
   menuItems?: MenuItemProps[];
 }
 

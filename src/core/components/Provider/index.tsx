@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
 export interface ProviderProps {
+  /** 内容 */
   children?: React.ReactNode;
   /** 权限
    * @example
