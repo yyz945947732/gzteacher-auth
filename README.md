@@ -1,3 +1,5 @@
+English | [简体中文](./README.zh-cn.md)
+
 <p align="center">
   <a href="https://github.com/yyz945947732/gzteacher-auth">
     <img alt="@gzteacher/auth" src="./public/logo.png" width="280" />
@@ -6,7 +8,7 @@
 
 # @gzteacher/auth
 
-> 基于 @alifd/next 的权限相关组件
+> Permission related components based on @alifd/next
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@gzteacher/auth">
@@ -35,29 +37,29 @@
   </a>
 </p>
 
-[📚 在线文档](https://64cca10e002c2d1cef000809-gakbrkxwip.chromatic.com/)
+[📚 Doc](https://64cca10e002c2d1cef000809-gakbrkxwip.chromatic.com/)
 
 ## Features
 
-- 🐒 **基本**: 基本的权限逻辑组件
-  - _Provider_: 定义权限组件上下文
-  - _Wrapper_: 有权限时展示组件内容
-  - _DenyWrapper_: 有权限时不展示组件内容
-  - _RouteGuard_: 路由权限拦截
-- 🐯 **组件**: 对`@alifd/next`的常用组件扩展了基本权限逻辑
-  - _Button_: 无权限时展示为文本
-  - _Select_: 下拉框不展示无权限的选项
-  - _Tab_: 标签页不展示无权限的标签
-  - _Table_: 表格不展示无权限的列
-  - _Menu_: 菜单不显示无权限的菜单项
-  - _Nav_: 导航栏不显示无权限的导航项
-- 🦁 **代理**: 支持在上下文内将权限编码重定向到其他权限编码
+- 🐒 **Basic**: Basic permission logic components
+  - _Provider_: Define permission component context
+  - _Wrapper_: Display component content when permission is granted
+  - _DenyWrapper_: Do not display component content when permission is granted
+  - _RouteGuard_: Routing permission interception
+- 🐯 **Components**: Extended basic permission logic for commonly used components of `@alifd/next`
+  - _Button_: Show as text when no permission
+  - _Select_: Select do not display unprivileged options
+  - _Tab_: Tab do not display unprivileged items
+  - _Table_: Tables do not display unprivileged columns
+  - _Menu_: Menu do not display unprivileged items
+  - _Nav_: Nav do not display unprivileged items
+- 🦁 **Proxy**: Support for redirecting permission codes to other permission codes within context
   - _Proxy_
-- 🐌 **工具**: 权限业务逻辑相关的工具函数
-  - _useAuth_: 返回权限信息和权限更新方法
-  - _useMatchAuth_: 返回是否有对应权限
-  - _useAuthData_: 返回有权限的集合数据
-- 🌲 **树形**: 权限功能支持树形结构
+- 🐌 **Tool**: Utility functions related to permission business logic
+  - _useAuth_: Return permission information and permission update method
+  - _useMatchAuth_: Return whether there is a corresponding permission
+  - _useAuthData_: Return authorized collection data based on the input collection
+- 🌲 **Tree Shape**: Permission functions and components support tree structure
   - _useAuthData_、_Select_、_Table_、_RouteGuard_ ...
 
 ## Install
@@ -76,7 +78,7 @@ yarn add @gzteacher/auth
 
 ## Usage
 
-使用 `Auth.Provider` 组件包裹以使用权限相关组件。
+Wrap with `Auth.Provider` component to use authorization related components.
 
 ```typescript
 // index.tsx
@@ -102,14 +104,14 @@ function Layout() {
 
   return (
     <Auth.Provider auth={auth}>
-      <Auth.Wrapper authCode="user.watch">查看</Auth.Wrapper>
-      <Auth.Button authCode="user.edit">编辑</Auth.Button>
+      <Auth.Wrapper authCode="user.watch">Watch</Auth.Wrapper>
+      <Auth.Button authCode="user.edit">Edit</Auth.Button>
     </Auth.Provider>
   );
 }
 ```
 
-##### ice2.js 中使用
+##### used in ice2.js
 
 ```typescript
 // app.tsx
@@ -139,3 +141,4 @@ runApp(appConfig);
 ## LICENSE
 
 [MIT](https://github.com/yyz945947732/gzteacher-auth/blob/master/LICENCE.md)
+

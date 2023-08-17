@@ -1,6 +1,8 @@
+[English](./README.md) | 简体中文
+
 <p align="center">
   <a href="https://github.com/yyz945947732/gzteacher-auth">
-    <img alt="@gzteacher/auth" src="logo.png" width="200" />
+    <img alt="@gzteacher/auth" src="./public/logo.png" width="280" />
   </a>
 </p>
 
@@ -10,13 +12,10 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@gzteacher/auth">
-    <img src="https://badgen.net/npm/v/@gzteacher/auth" alt="Version" />
+    <img src="https://img.shields.io/npm/v/@gzteacher/auth.svg" alt="Version" />
   </a>
   <a href="https://www.npmjs.com/package/@gzteacher/auth">
-    <img
-      src="https://img.shields.io/npm/dm/@gzteacher/auth.svg"
-      alt="download"
-    />
+    <img src="https://img.shields.io/npm/dm/@gzteacher/auth.svg" alt="download" />
   </a>
   <a href="https://coveralls.io/github/yyz945947732/gzteacher-auth?branch=master">
     <img
@@ -37,6 +36,8 @@
     />
   </a>
 </p>
+
+[📚 在线文档](https://64cca10e002c2d1cef000809-gakbrkxwip.chromatic.com/)
 
 ## Features
 
