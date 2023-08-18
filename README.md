@@ -37,7 +37,7 @@ English | [简体中文](./README.zh-cn.md)
   </a>
 </p>
 
-[📚 Doc](https://64cca10e002c2d1cef000809-gakbrkxwip.chromatic.com/)
+[📚 Doc](https://64cca10e002c2d1cef000809-mrafulojes.chromatic.com/)
 
 ## Features
 
