@@ -56,9 +56,9 @@ English | [简体中文](./README.zh-cn.md)
 - 🦁 **Proxy**: Support for redirecting permission codes to other permission codes within context
   - _Proxy_
 - 🐌 **Tool**: Utility functions related to permission business logic
-  - _useAuth_: Return permission information and permission update method
-  - _useMatchAuth_: Return whether there is a corresponding permission
-  - _useAuthData_: Return authorized collection data based on the input collection
+  - _useAuth_: Get permission information and permission update method
+  - _useMatchAuth_: Check whether there is a corresponding permission
+  - _useAuthData_: Get authorized collection data based on the input collection
 - 🌲 **Tree Shape**: Permission functions and components support tree structure
   - _useAuthData_、_Select_、_Table_、_RouteGuard_ ...
 

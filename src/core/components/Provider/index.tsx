@@ -21,7 +21,7 @@ export interface ProviderProps {
 
 interface ProviderContext extends Omit<ProviderProps, "children"> {
   /** 更新权限 */
-  setAuth: (auth: ProviderProps["auth"]) => void;
+  setAuth: React.Dispatch<React.SetStateAction<ProviderProps['auth']>>;
 }
 export const ProviderContext = createContext<ProviderContext>({
   setAuth: () => {},
