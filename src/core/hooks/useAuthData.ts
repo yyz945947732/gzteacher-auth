@@ -1,9 +1,9 @@
-import { omit } from "lodash-es";
 import { useContext } from "react";
 import { filter, map } from "tree-lodash";
 
 import { ProviderContext } from "../components/Provider";
 import { ProxyContext } from "../components/Proxy";
+import { omit } from "../utils";
 import { isMatchAuth } from "../utils";
 
 /** 配置项 */
@@ -46,7 +46,7 @@ export function useAuthData(data?: any[], options?: Options) {
     : data.filter(filterFn);
 
   function mapFn(item: any) {
-    return omit(item, "auth");
+    return omit(item, ["auth"]);
   }
 
   const purifiedData: any[] = combineOptions?.isTree

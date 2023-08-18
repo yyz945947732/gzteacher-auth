@@ -1,7 +1,7 @@
-import { has } from "lodash-es";
 import { useContext } from "react";
 
 import { ProviderContext } from "../components/Provider";
+import { has } from "../utils";
 
 /** 检测组件使用是否合法 */
 export function useDetect(componentName: string) {
