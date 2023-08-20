@@ -57,3 +57,4 @@ export type { WrapperProps } from "./components/Wrapper";
 export { useAuth } from "./hooks/useAuth";
 export { useAuthData } from "./hooks/useAuthData";
 export { useMatchAuth } from "./hooks/useMatchAuth";
+export { withAuth } from "./utils/withAuth";
