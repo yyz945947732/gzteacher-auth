@@ -1,4 +1,4 @@
-[English](./README.md) | 简体中文
+[English](./READEME.zh-en.md) | 简体中文
 
 <p align="center">
   <a href="https://github.com/yyz945947732/gzteacher-auth">
