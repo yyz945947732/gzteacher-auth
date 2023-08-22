@@ -8,7 +8,7 @@ interface ProviderValidatorItem {
     /** 权限编码 */
     authCode: string,
     /** 权限数据 */
-    auth: ProviderProps["auth"]
+    auth: any
   ) => boolean;
 }
 

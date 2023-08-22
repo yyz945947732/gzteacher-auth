@@ -175,4 +175,52 @@ describe("Auth.Provider", () => {
     const html = container.innerHTML;
     expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
   });
+
+  test("Checks Validator pass with RegExp use proxy", () => {
+    const { container } = render(
+      <ProviderExample
+        auth={{
+          "teacher.watch": true,
+        }}
+        validator={[
+          {
+            match: /user\.(.*)/,
+            validate: (authCode, auth) => {
+              const [, code] = authCode.split(".");
+              if (auth[`teacher.${code}`]) {
+                return true;
+              }
+              return false;
+            },
+          },
+        ]}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Validator pass with RegExp use proxy", () => {
+    const { container } = render(
+      <ProviderExample
+        auth={{
+          "user.watch": true,
+        }}
+        validator={[
+          {
+            match: /user\.(.*)/,
+            validate: (authCode, auth) => {
+              const [, code] = authCode.split(".");
+              if (auth[`teacher.${code}`]) {
+                return true;
+              }
+              return false;
+            },
+          },
+        ]}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
+  });
 });
