@@ -4,10 +4,10 @@ import { Auth, ProviderProps } from "../index";
 
 const TEXT_INSIDE_PROVIDER = "inside provider";
 
-function ProviderExample({ auth, disabled }: ProviderProps) {
+function ProviderExample({ auth, disabled, validator }: ProviderProps) {
   return (
     <div>
-      <Auth.Provider auth={auth} disabled={disabled}>
+      <Auth.Provider auth={auth} disabled={disabled} validator={validator}>
         <Auth.Wrapper authCode="user.watch">
           {TEXT_INSIDE_PROVIDER}
         </Auth.Wrapper>
@@ -74,6 +74,104 @@ describe("Auth.Provider", () => {
 
   test("Checks Wrapper without auth inside Provider should display when auth is String type", () => {
     const { container } = render(<ProviderExample auth="user.edit,user.del" />);
+    const html = container.innerHTML;
+    expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Validator pass with string type match", () => {
+    const { container } = render(
+      <ProviderExample
+        auth={{
+          "user.watch": true,
+        }}
+        validator={[
+          {
+            match: "user.watch",
+            validate: () => true,
+          },
+        ]}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Validator deny with string type match", () => {
+    const { container } = render(
+      <ProviderExample
+        auth={{
+          "user.watch": true,
+        }}
+        validator={[
+          {
+            match: "user.watch",
+            validate: () => false,
+          },
+        ]}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Validator works in serial", () => {
+    const { container } = render(
+      <ProviderExample
+        auth={{
+          "user.watch": true,
+        }}
+        validator={[
+          {
+            match: "user.edit",
+            validate: () => false,
+          },
+          {
+            match: "user.watch",
+            validate: () => false,
+          },
+          {
+            match: "user.watch",
+            validate: () => true,
+          },
+        ]}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Validator pass with RegExp type match", () => {
+    const { container } = render(
+      <ProviderExample
+        auth={{
+          "user.edit": true,
+        }}
+        validator={[
+          {
+            match: /user\.(.*)/,
+            validate: () => true,
+          },
+        ]}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).toContain(TEXT_INSIDE_PROVIDER);
+  });
+
+  test("Checks Validator deny with RegExp type match", () => {
+    const { container } = render(
+      <ProviderExample
+        auth={{
+          "user.edit": true,
+        }}
+        validator={[
+          {
+            match: /user\.(.*)/,
+            validate: () => false,
+          },
+        ]}
+      />
+    );
     const html = container.innerHTML;
     expect(html).not.toContain(TEXT_INSIDE_PROVIDER);
   });

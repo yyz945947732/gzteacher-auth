@@ -1,19 +1,15 @@
 import type { ProviderProps } from "../index";
 
-interface Options {
-  /** 权限 */
-  auth?: ProviderProps["auth"];
+interface Options extends Omit<ProviderProps, "children"> {
   /** 权限代理 */
   authProxy?: Record<string, string>;
   /** 权限编号 */
   authCode?: string | string[];
-  /** 是否关闭权限限制，默认 `false` */
-  disabled?: boolean;
 }
 
 /** 判断权限是否匹配 */
 export function isMatchAuth(options: Options): boolean {
-  const { auth = {}, authCode, authProxy, disabled } = options;
+  const { auth = {}, authCode, authProxy, validator, disabled } = options;
   if (disabled === true) {
     return true;
   }
@@ -30,6 +26,23 @@ export function isMatchAuth(options: Options): boolean {
       return true;
     }
     const targetAuth = authProxy?.[authCode] ?? authCode;
+    let isValidatorPass: boolean | null = null;
+    if (Array.isArray(validator)) {
+      for (const { match, validate } of validator) {
+        const isRegMatch = isRegExp(match) && match.test(targetAuth);
+        const isStrMatch = typeof match === "string" && match === targetAuth;
+        if (isRegMatch || isStrMatch) {
+          const isPass = validate(targetAuth, auth);
+          if (typeof isPass === "boolean") {
+            isValidatorPass = isPass;
+          }
+          break;
+        }
+      }
+    }
+    if (typeof isValidatorPass === "boolean") {
+      return isValidatorPass;
+    }
     if (Array.isArray(auth)) {
       return auth.includes(targetAuth);
     }
@@ -43,4 +56,8 @@ export function isMatchAuth(options: Options): boolean {
     }
     return false;
   }
+}
+
+function isRegExp(val: unknown): val is RegExp {
+  return Object.prototype.toString.call(val) === "[object RegExp]";
 }
