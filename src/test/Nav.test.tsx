@@ -14,6 +14,17 @@ function NavExample({ navItems }: NavProps) {
         "nav.taobao.web": true,
         "nav.taobao.app": true,
       }}
+      validator={[
+        {
+          match: "nav.jingdong",
+          validate: (_authCode, auth) => {
+            if (auth["nav.alipay"]) {
+              return true;
+            }
+            return false;
+          },
+        },
+      ]}
     >
       <Auth.Nav navItems={navItems} />
     </Auth.Provider>
@@ -55,6 +66,11 @@ describe("Auth.Nav", () => {
                 auth: "nav.meituan",
               },
               {
+                label: "京东",
+                key: "jingdong",
+                auth: "nav.jingdong",
+              },
+              {
                 label: "淘宝",
                 key: "taobao",
                 auth: "nav.taobao",
@@ -84,5 +100,6 @@ describe("Auth.Nav", () => {
     expect(html).toContain("购物平台");
     expect(html).not.toContain("美团");
     expect(html).toContain("淘宝");
+    expect(html).toContain("京东");
   });
 });

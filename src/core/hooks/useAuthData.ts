@@ -27,7 +27,7 @@ export function useAuthData(data?: any[], options?: Options) {
     ...defaultOptions,
     ...options,
   };
-  const { auth } = useContext(ProviderContext);
+  const { auth, disabled, validator } = useContext(ProviderContext);
   const { authProxy } = useContext(ProxyContext);
 
   function filterFn(item: any) {
@@ -36,6 +36,8 @@ export function useAuthData(data?: any[], options?: Options) {
       isMatchAuth({
         auth,
         authProxy,
+        disabled,
+        validator,
         authCode: item.auth,
       })
     );

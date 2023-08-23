@@ -1,0 +1,164 @@
+### useAuth
+
+获取权限数据和更新权限数据的方法。
+
+**Returns**
+
+useAuth 返回一个包含以下两个数据的数组：
+
+- `auth`: 当前权限数据
+- `setAuth`: 更新权限数据的方法
+
+使用示例：
+
+```tsx
+import { useAuth } from "@gzteacher/auth";
+
+export function Home() {
+  const [auth, setAuth] = useAuth();
+
+  function updateAuth() {
+    setAuth({ admin: false, guest: true });
+  }
+
+  return (
+    <>
+      当前用户角色：
+      <code>{JSON.stringify(auth)}</code>
+      <button type="button" onClick={updateAuth}>
+        更新权限
+      </button>
+    </>
+  );
+}
+```
+
+### useMatchAuth
+
+返回是否有某个权限
+
+**Parameters**
+
+- `authCode`: 权限编码
+
+**Returns**
+
+useMatchAuth 返回一个是否拥有权限的布尔值。
+
+使用示例：
+
+```tsx
+import { useMatchAuth } from "@gzteacher/auth";
+
+export function Home() {
+  const isAdmin = useMatchAuth("admin");
+
+  return <>{isAdmin ? "管理员" : "普通人"}</>;
+}
+```
+
+### useAuthData
+
+返回一个过滤的权限的新集合，支持树形结构。
+
+**Parameters**
+
+- `sourceData`: 集合数据，通过 `auth` 字段标识权限。
+- `options`: 配置
+  - `isTree`: 是否为树形结构，为树形结构时将对子节点进行权限过滤，默认为 `true`。
+  - `childrenKey`: 子节点字段，默认为 `children`。
+
+**Returns**
+
+useAuthData 返回过滤了权限的新的集合数据。
+
+使用示例：
+
+```tsx
+import { useAuthData } from "@gzteacher/auth";
+
+export function Home() {
+  const sourceData = [
+    {
+      province: "广东",
+      auth: "gd",
+      cities: [
+        {
+          city: "广州",
+          auth: "gz",
+        },
+        {
+          city: "河源",
+          auth: "hy",
+        },
+      ],
+    },
+    {
+      province: "广西",
+      auth: "gx",
+    },
+    {
+      province: "云南",
+      auth: "yn",
+    },
+  ];
+  const authData = useAuthData(sourceData, {
+    isTree: true,
+    childrenKey: "cities",
+  });
+
+  return (
+    <ul>
+      {authData?.map((item) => (
+        <li>
+          <span>{item.province}</span>
+          <ul>
+            {item.cities ? (
+              item.cities.map((item) => <li>{item.city}</li>)
+            ) : (
+              <></>
+            )}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+### withAuth
+
+当你需要让类组件获取到权限数据时，可以使用这个方法创造一个包含权限数据的 HOC 组件。
+
+**Parameters**
+
+- `component`: 组件
+
+**Returns**
+
+返回带有权限数据的 HOC 组件。
+
+使用示例：
+
+```tsx
+import { withAuth } from "@gzteacher/auth";
+
+class ErrorBoundary extends React.Component<any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      hasError: false,
+    };
+  }
+  render(): React.ReactNode {
+    const { children, auth } = this.props;
+    const { hasError } = this.state;
+    if (auth["admin"] && hasError) {
+      return <h1>出错了，管理员大哥。</h1>;
+    }
+    return children;
+  }
+}
+
+export default withAuth(ErrorBoundary);
+```
