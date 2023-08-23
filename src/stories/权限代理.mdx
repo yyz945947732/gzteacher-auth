@@ -1,0 +1,38 @@
+### 权限代理
+
+验证权限时在上下文内替换指定权限编码为其他权限编码。使用键值对配置 `authProxy`属性，`key` 为替换之后的权限，`value` 为原始权限。
+
+#### 使用场景
+
+项目中两个页面几乎相同，于是某个页面完全引用了另一个页面组件，但两个页面需要配置两套权限。
+
+```tsx
+// 页面A
+import { Auth } from "@gzteacher/auth";
+
+export function PageA() {
+  return (
+    <div>
+      <Auth.Wrapper authCode="pageA.sentence1">壮志凌云几分酬</Auth.Wrapper>
+      <Auth.Wrapper authCode="pageA.sentence2">知己难逢几人留</Auth.Wrapper>
+    </div>
+  );
+}
+
+// 页面B，完全引用了页面A
+import { Auth } from "@gzteacher/auth";
+import PageA from "./PageA";
+
+export function PageB() {
+  return (
+    <Auth.Proxy
+      authProxy={{
+        "pageB.sentence1": "pageA.sentence1",
+        "pageB.sentence2": "pageA.sentence2",
+      }}
+    >
+      <PageA />
+    </Auth.Proxy>
+  );
+}
+```

@@ -443,14 +443,14 @@ export function Example() {
     <Auth.Menu
       menuItems={[
         {
-          label: "支付方式",
-          auth: "menu.pay",
-          key: "pay",
+          label: "美国短尾猫",
+          auth: "cat.md",
+          key: "md",
         },
         {
-          label: "购物平台",
-          auth: "menu.platform",
-          key: "platform",
+          label: "中华田园猫",
+          auth: "cat.ty",
+          key: "ty",
         },
       ]}
     />
@@ -468,49 +468,37 @@ export function Example() {
     <Auth.Menu
       menuItems={[
         {
-          label: "支付方式",
+          label: "美国短尾猫",
           itemType: "group",
-          auth: "menu.pay",
-          key: "pay",
-          children: [
-            {
-              label: "微信",
-              key: "wechat",
-              auth: "menu.wechat",
-            },
-            {
-              label: "支付宝",
-              key: "alipay",
-              auth: "menu.alipay",
-            },
-          ],
+          auth: "cat.md",
+          key: "md",
         },
         {
-          label: "购物平台",
+          label: "中华田园猫",
           itemType: "group",
-          auth: "menu.platform",
-          key: "platform",
+          auth: "cat.ty",
+          key: "ty",
           children: [
             {
-              label: "美团",
-              key: "meituan",
-              auth: "menu.meituan",
+              label: "橘猫",
+              key: "ju",
+              auth: "cat.ju",
             },
             {
-              label: "淘宝",
-              key: "taobao",
-              auth: "menu.taobao",
+              label: "花猫",
+              key: "hua",
+              auth: "cat.hua",
               itemType: "subMenu",
               children: [
                 {
-                  label: "淘宝网站",
-                  key: "taobao.web",
-                  auth: "menu.taobao.web",
+                  label: "玳瑁猫",
+                  key: "dm",
+                  auth: "cat.hua.dm",
                 },
                 {
-                  label: "淘宝APP",
-                  key: "taobao.app",
-                  auth: "menu.taobao.app",
+                  label: "三花猫",
+                  key: "sh",
+                  auth: "cat.hua.sh",
                 },
               ],
             },
@@ -624,3 +612,33 @@ export function Example() {
 | children | 子标签                           | NavItem[]                     | -      |
 | itemType | 导航类型，参考 next/nav 导航类型 | "item" \| "subNav" \| "group" | 'item' |
 | auth     | 权限编码                         | String/String[]               | -      |
+
+### \<Proxy />
+
+验证权限时在上下文内替换指定权限编码为其他权限编码。更多内容可以查看[权限代理](/docs/stories-权限代理--docs)。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+import Page from "./Page.tsx";
+
+export function Example() {
+  return (
+    <Auth.Proxy
+      authProxy={{
+        "auth.target": "auth.origin",
+        "auth.good": "auth.bad",
+        "auth.success": "auth.fail",
+      }}
+    >
+      <Page />
+    </Auth.Proxy>
+  );
+}
+```
+
+#### API
+
+| 参数      | 说明                                                 | 类型                    | 默认值 |
+| --------- | ---------------------------------------------------- | ----------------------- | ------ |
+| authProxy | 代理配置，`key` 为替换之后的权限，`value` 为原始权限 | Record\<string, string> | -      |
+| children  | 内容                                                 | React.ReactNode         | -      |

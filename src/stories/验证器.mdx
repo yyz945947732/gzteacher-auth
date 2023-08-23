@@ -1,14 +1,12 @@
-import "@alifd/next/lib/message/style2";
-
-import { Message } from "@alifd/next";
-
 ### Validator
 
-如果你希望自定义一些权限验证逻辑，你可以使用 `validator`。他会在验证时串行执行所有验证器，[^1]并在首次匹配到你指定的权限编码（或正则）时，执行你自己的权限判断逻辑。
+如果你希望自定义一些权限验证逻辑，你可以使用 `validator`。他会在验证权限编码时串行执行所有验证器，并在权限编码首次匹配到 `match`（正则或字符串） 时，执行对应的 `validate` 来判断权限。
+
+#### 使用案例
+
+你可以用它来实现许多丰富的功能。
 
 比如，在开发环境你想关闭所有权限来查看权限限制后的页面是否显示正常。
-
-[^1]: 按数组顺序依次对 `match` 进行匹配，匹配到后执行 `validate` 验证函数，并停止匹配之后的验证器。
 
 ```tsx
 import { Auth } from "@gzteacher/auth";
@@ -136,7 +134,7 @@ export function Example() {
             if (auth["admin"]) {
               return true;
             }
-            return auth[authCode];
+            return Boolean(auth[authCode]);
           },
         },
       ]}
@@ -148,3 +146,40 @@ export function Example() {
 ```
 
 或者创造你想要的更丰富的功能。
+
+#### 串行执行
+
+验证时将按照数组顺序依次匹配，因此你应该将需要优先匹配的验证器放在数组前面。
+
+以下代码在权限验证 `peace` 时，第二个和第三个验证器都能匹配到，但因为优先匹配到第二个验证器，所以返回验证结果为 `true`。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+      validator={[
+        {
+          match: "war",
+          validate: (authCode, auth) => false,
+        },
+        {
+          match: "peace",
+          validate: (authCode, auth) => true,
+        },
+        {
+          match: /(.*)/,
+          validate: (authCode, auth) => false,
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
