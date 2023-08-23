@@ -200,7 +200,7 @@ describe("Auth.Provider", () => {
     expect(html).toContain(TEXT_INSIDE_PROVIDER);
   });
 
-  test("Checks Validator pass with RegExp use proxy", () => {
+  test("Checks Validator deny with RegExp use proxy", () => {
     const { container } = render(
       <ProviderExample
         auth={{
