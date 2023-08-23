@@ -1,0 +1,626 @@
+### Wrapper
+
+最基本的权限组件。使用此组件包裹的内容将在有对应 `authCode` 的权限时显示。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return <Auth.Wrapper authCode="see">看见</Auth.Wrapper>;
+}
+```
+
+`authCode` 也支持数组，当其中一项匹配时则视为有权限。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return <Auth.Wrapper authCode={["see", "meet"]}>遇见</Auth.Wrapper>;
+}
+```
+
+如果没有 `authCode`，那么内容一定会显示。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return <Auth.Wrapper>瞅你咋地</Auth.Wrapper>;
+}
+```
+
+#### API
+
+| 参数     | 说明     | 类型            | 默认值 |
+| -------- | -------- | --------------- | ------ |
+| authCode | 权限编码 | String/String[] | -      |
+| children | 内容     | React.ReactNode | -      |
+
+### DenyWrapper
+
+使用此组件包裹的内容将在有对应 `authCode` 的权限时隐藏。当你希望拥有某些权限的人看不见某些东西时，可以用这个组件。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.DenyWrapper authCode="boss">
+      一些不能让老板看到的秘密
+    </Auth.DenyWrapper>
+  );
+}
+```
+
+#### API
+
+| 参数     | 说明     | 类型            | 默认值 |
+| -------- | -------- | --------------- | ------ |
+| authCode | 权限编码 | String/String[] | -      |
+| children | 内容     | React.ReactNode | -      |
+
+### Provider
+
+提供权限组件上下文。如果外层没有这个组件，这个库的功能你都用不了。
+
+你可以提供 `auth` 权限数据，内部权限组件将根据 `auth` 的值来判断权限。
+
+`auth` 一般是一个对象，key 是权限编码，value 为是否有对应权限的布尔值。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+也可以是数组。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider auth={["love", "peace"]}>
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+或字符串。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider auth="love,peace">
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+如果你想关闭整个权限功能，可以通过 `disabled` 关闭所有权限验证。
+
+比如你希望本地开发时不受权限功能影响。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+      disabled={window.location.host.indexOf("localhost") > -1}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+如果你希望自定义一些权限验证逻辑，你可以使用 `validator`，它可以很灵活的实现你想要的更多功能，更多内容可以查看[验证器](/docs/stories-验证器--docs)。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+      validator={[
+        {
+          match: /(.*)/,
+          validate: (authCode, auth) => false,
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+#### API
+
+| 参数      | 说明                 | 类型                                     | 默认值 |
+| --------- | -------------------- | ---------------------------------------- | ------ |
+| auth      | 权限数据             | Record\<string, boolean>/String[]/String | -      |
+| disabled  | 是否关闭权限限制     | Boolean                                  | false  |
+| validator | 自定义权限逻辑验证器 | [Validator[]](#validator)                | -      |
+| children  | 内容                 | React.ReactNode                          | -      |
+
+##### Validator
+
+| 参数     | 说明         | 类型                                     | 默认值 |
+| -------- | ------------ | ---------------------------------------- | ------ |
+| match    | 匹配权限编码 | RegExp/String                            | -      |
+| validate | 验证权限逻辑 | (authCode: string, auth: any) => boolean | -      |
+
+### RouteGuard
+
+如果你的项目使用了 react-router-dom V6，那么你可以使用它配置路由权限拦截。更多内容可以查看[路由权限](/docs/stories-路由权限--docs)。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example({ children }) {
+  return (
+    <Auth.RouteGuard
+      routes={[
+        {
+          path: "/",
+          auth: "index",
+        },
+        {
+          path: "/user",
+          auth: "user",
+          children: [
+            {
+              path: "/user/info",
+              auth: "user.info",
+            },
+          ],
+        },
+        {
+          path: "/shop",
+          auth: "shop",
+        },
+      ]}
+    >
+      {children}
+    </Auth.RouteGuard>
+  );
+}
+```
+
+你也可以指定没有权限时显示的内容。默认为 403。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example({ children }) {
+  return (
+    <Auth.RouteGuard
+      NoAuthFallback={<h1>你不配</h1>}
+      routes={[
+        {
+          path: "/",
+          auth: "index",
+        },
+      ]}
+    >
+      {children}
+    </Auth.RouteGuard>
+  );
+}
+```
+
+#### API
+
+| 参数           | 说明                                   | 类型            | 默认值         |
+| -------------- | -------------------------------------- | --------------- | -------------- |
+| routes         | 路由数据，通过 `auth` 字段标识权限编码 | any[]           | -              |
+| NoAuthFallback | 无权限时显示内容                       | React.ReactNode | \<h1>403\</h1> |
+| children       | 内容                                   | React.ReactNode | -              |
+
+### Button
+
+有权限时显示为按钮，无权限时显示为文本。通常用于控制点击某个词条时是否展示详情。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Button authCode="half-life" onClick={getDetail}>
+      我的前半生
+    </Auth.Button>
+  );
+}
+```
+
+#### API
+
+属性继承 [next/button](https://fusion.design/pc/component/button?themeid=2#API)
+
+| 参数     | 说明     | 类型            | 默认值 |
+| -------- | -------- | --------------- | ------ |
+| authCode | 权限编码 | String/String[] | -      |
+
+### Select
+
+下拉框，只展示有权限的选项。支持树形结构。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Select
+      dataSource={[
+        {
+          value: "fish",
+          label: "白天摸鱼",
+          auth: "select.option1",
+        },
+        {
+          value: "work",
+          label: "晚上加班",
+          auth: "select.option2",
+        },
+        {
+          value: "holiday",
+          label: "周末调休",
+          auth: "select.option3",
+        },
+      ]}
+    />
+  );
+}
+```
+
+#### API
+
+属性继承 [next/select](https://fusion.design/pc/component/select?themeid=2#API)
+
+| 参数       | 说明                                                        | 类型  | 默认值 |
+| ---------- | ----------------------------------------------------------- | ----- | ------ |
+| dataSource | 继承 next/select `dataSource`，新增 `auth` 属性标识权限编码 | any[] | -      |
+
+### Tab
+
+选项卡，只展示有权限的选项。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Tab
+      tabItems={[
+        {
+          title: "第一步",
+          children: <p style={{ marginTop: 16 }}>出生</p>,
+          auth: "tab.step1",
+        },
+        {
+          title: "第二步",
+          children: <p style={{ marginTop: 16 }}>活着</p>,
+          auth: "tab.step2",
+        },
+        {
+          title: "第三步",
+          children: <p style={{ marginTop: 16 }}>死掉</p>,
+          auth: "tab.step3",
+        },
+      ]}
+    />
+  );
+}
+```
+
+#### API
+
+属性继承 [next/tab](https://fusion.design/pc/component/tab?themeid=2#API)
+
+| 参数     | 说明                                                                                                            | 类型  | 默认值 |
+| -------- | --------------------------------------------------------------------------------------------------------------- | ----- | ------ |
+| tabItems | 继承 [next/tab.item](https://fusion.design/pc/component/tab?themeid=2#Tab%20Item)，新增 `auth` 属性标识权限编码 | any[] | -      |
+
+### Table
+
+表格，只展示有权限的列。支持树形结构。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Table
+      dataSource={dataSource}
+      columns={[
+        {
+          dataIndex: "name",
+          title: "奥特曼",
+          auth: "superman.name",
+        },
+        {
+          dataIndex: "human",
+          title: "人间体",
+          auth: "superman.human",
+        },
+        {
+          dataIndex: "plant",
+          title: "所属星球",
+          auth: "superman.plant",
+        },
+        {
+          dataIndex: "record",
+          title: "战绩",
+          auth: "superman.record",
+        },
+      ]}
+    />
+  );
+}
+```
+
+通过树形结构实现分组表格。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Table
+      dataSource={dataSource}
+      columns={[
+        {
+          dataIndex: "name",
+          title: "姓名",
+          auth: "name",
+        },
+        {
+          dataIndex: "link",
+          title: "联系方式",
+          auth: "link",
+          children: [
+            {
+              dataIndex: "phone",
+              title: "手机",
+              auth: "phone",
+            },
+            {
+              dataIndex: "email",
+              title: "邮箱",
+              auth: "email",
+            },
+          ],
+        },
+      ]}
+    />
+  );
+}
+```
+
+#### API
+
+属性继承 [next/table](https://fusion.design/pc/component/table?themeid=2#API)
+
+| 参数    | 说明                                                    | 类型  | 默认值 |
+| ------- | ------------------------------------------------------- | ----- | ------ |
+| columns | 继承 next/table `columns`，新增 `auth` 属性标识权限编码 | any[] | -      |
+
+### Menu
+
+菜单，只展示有权限的菜单项。支持树形结构。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Menu
+      menuItems={[
+        {
+          label: "支付方式",
+          auth: "menu.pay",
+          key: "pay",
+        },
+        {
+          label: "购物平台",
+          auth: "menu.platform",
+          key: "platform",
+        },
+      ]}
+    />
+  );
+}
+```
+
+菜单分组，支持设置某项为 [`group`](https://fusion.design/pc/component/menu?themeid=2#Menu%20Group) 或 [`subMenu`](https://fusion.design/pc/component/menu?themeid=2#Menu%20Sub%20Menu)。有 `children` 但没指定 `itemType` 则默认展示为 `subMenu`。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Menu
+      menuItems={[
+        {
+          label: "支付方式",
+          itemType: "group",
+          auth: "menu.pay",
+          key: "pay",
+          children: [
+            {
+              label: "微信",
+              key: "wechat",
+              auth: "menu.wechat",
+            },
+            {
+              label: "支付宝",
+              key: "alipay",
+              auth: "menu.alipay",
+            },
+          ],
+        },
+        {
+          label: "购物平台",
+          itemType: "group",
+          auth: "menu.platform",
+          key: "platform",
+          children: [
+            {
+              label: "美团",
+              key: "meituan",
+              auth: "menu.meituan",
+            },
+            {
+              label: "淘宝",
+              key: "taobao",
+              auth: "menu.taobao",
+              itemType: "subMenu",
+              children: [
+                {
+                  label: "淘宝网站",
+                  key: "taobao.web",
+                  auth: "menu.taobao.web",
+                },
+                {
+                  label: "淘宝APP",
+                  key: "taobao.app",
+                  auth: "menu.taobao.app",
+                },
+              ],
+            },
+          ],
+        },
+      ]}
+    />
+  );
+}
+```
+
+#### API
+
+属性继承 [next/menu](https://fusion.design/pc/component/menu?themeid=2#API)
+
+| 参数      | 说明       | 类型  | 默认值 |
+| --------- | ---------- | ----- | ------ |
+| menuItems | MenuItem[] | any[] | -      |
+
+#### MenuItem
+
+属性继承 [next/menu.item](https://fusion.design/pc/component/menu?themeid=2#Menu%20Item)
+
+| 参数     | 说明                              | 类型                           | 默认值 |
+| -------- | --------------------------------- | ------------------------------ | ------ |
+| label    | 标签内容                          | String                         | -      |
+| children | 子标签                            | MenuItem[]                     | -      |
+| itemType | 菜单类型，参考 next/menu 菜单类型 | "item" \| "subMenu" \| "group" | 'item' |
+| auth     | 权限编码                          | String/String[]                | -      |
+
+### Nav
+
+导航栏，只显示有权限的导航项。支持树形结构。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Nav
+      navItems={[
+        {
+          label: "走不完的长巷原来也就那么长",
+          auth: "menu.1",
+          key: "1",
+        },
+        {
+          label: "跑步完的操场原来小成这样",
+          auth: "menu.2",
+          key: "2",
+        },
+      ]}
+    />
+  );
+}
+```
+
+导航栏分组，支持设置某项为 [`group`](https://fusion.design/pc/component/nav?themeid=2#Nav%20Group) 或 [`subNav`](https://fusion.design/pc/component/nav?themeid=2#Nav%20Sub%20Nav)。有 `children` 但没指定 `itemType` 则默认展示为 `subNav`。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Nav
+      navItems={[
+        {
+          label: "走不完的长巷原来也就那么长",
+          auth: "menu.1",
+          key: "1",
+        },
+        {
+          label: "跑步完的操场原来小成这样",
+          auth: "menu.2",
+          key: "2",
+          itemType: "group",
+          children: [
+            {
+              label: "时间的手翻云覆雨了什么",
+              auth: "menu.3",
+              key: "3",
+            },
+            {
+              label: "从我手中夺走了什么",
+              auth: "menu.4",
+              key: "4",
+            },
+          ],
+        },
+      ]}
+    />
+  );
+}
+```
+
+#### API
+
+属性继承 [next/nav](https://fusion.design/pc/component/nav?themeid=2#API)
+
+| 参数     | 说明      | 类型  | 默认值 |
+| -------- | --------- | ----- | ------ |
+| navItems | NavItem[] | any[] | -      |
+
+#### NavItem
+
+属性继承 [next/nav.item](https://fusion.design/pc/component/nav?themeid=2#Nav%20Item)
+
+| 参数     | 说明                             | 类型                          | 默认值 |
+| -------- | -------------------------------- | ----------------------------- | ------ |
+| label    | 标签内容                         | String                        | -      |
+| children | 子标签                           | NavItem[]                    | -      |
+| itemType | 导航类型，参考 next/nav 导航类型 | "item" \| "subNav" \| "group" | 'item' |
+| auth     | 权限编码                         | String/String[]               | -      |

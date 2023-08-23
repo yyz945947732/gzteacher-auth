@@ -1,0 +1,150 @@
+import "@alifd/next/lib/message/style2";
+
+import { Message } from "@alifd/next";
+
+### Validator
+
+如果你希望自定义一些权限验证逻辑，你可以使用 `validator`。他会在验证时串行执行所有验证器，[^1]并在首次匹配到你指定的权限编码（或正则）时，执行你自己的权限判断逻辑。
+
+比如，在开发环境你想关闭所有权限来查看权限限制后的页面是否显示正常。
+
+[^1]: 按数组顺序依次对 `match` 进行匹配，匹配到后执行 `validate` 验证函数，并停止匹配之后的验证器。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+      validator={[
+        {
+          match: /(.*)/,
+          validate: (authCode, auth) => false,
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+或者，在开发环境你想关闭某个模块的权限来查看某个模块权限限制后的页面是否显示正常。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+      validator={[
+        {
+          match: /user\.(.*)/,
+          validate: (authCode, auth) => false,
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+你还可以用它来实现更灵活的权限替换。[^2]
+
+[^2]: 这种写法无法完全替代 `<Auth.Proxy />`，`<Auth.Proxy />` 是在上下文内对权限进行替换，可以避免影响到其他模块的相关权限。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+      validator={[
+        {
+          match: /user\.xxx\.(.*)/,
+          validate: (authCode, auth) => {
+            const arr = authCode.split(".");
+            const lastPart = arr[arr.length - 1];
+            if (auth[`teacher.xxx.${lastPart}`]) {
+              return true;
+            }
+            return false;
+          },
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+直接开启某个权限。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+      validator={[
+        {
+          match: "test",
+          validate: (authCode, auth) => true,
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+拥有某个权限则视为拥有所有权限。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Provider
+      auth={{
+        love: true,
+        peace: true,
+      }}
+      validator={[
+        {
+          match: /(.*)/,
+          validate: (authCode, auth) => {
+            if (auth["admin"]) {
+              return true;
+            }
+            return auth[authCode];
+          },
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Provider>
+  );
+}
+```
+
+或者创造你想要的更丰富的功能。
