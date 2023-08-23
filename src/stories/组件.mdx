@@ -1,4 +1,4 @@
-### Wrapper
+### \<Wrapper />
 
 最基本的权限组件。使用此组件包裹的内容将在有对应 `authCode` 的权限时显示。
 
@@ -37,7 +37,7 @@ export function Example() {
 | authCode | 权限编码 | String/String[] | -      |
 | children | 内容     | React.ReactNode | -      |
 
-### DenyWrapper
+### \<DenyWrapper />
 
 使用此组件包裹的内容将在有对应 `authCode` 的权限时隐藏。当你希望拥有某些权限的人看不见某些东西时，可以用这个组件。
 
@@ -60,7 +60,7 @@ export function Example() {
 | authCode | 权限编码 | String/String[] | -      |
 | children | 内容     | React.ReactNode | -      |
 
-### Provider
+### \<Provider />
 
 提供权限组件上下文。如果外层没有这个组件，这个库的功能你都用不了。
 
@@ -176,7 +176,7 @@ export function Example() {
 | match    | 匹配权限编码 | RegExp/String                            | -      |
 | validate | 验证权限逻辑 | (authCode: string, auth: any) => boolean | -      |
 
-### RouteGuard
+### \<RouteGuard />
 
 如果你的项目使用了 react-router-dom V6，那么你可以使用它配置路由权限拦截。更多内容可以查看[路由权限](/docs/stories-路由权限--docs)。
 
@@ -224,8 +224,8 @@ export function Example({ children }) {
       NoAuthFallback={<h1>你不配</h1>}
       routes={[
         {
-          path: "/",
-          auth: "index",
+          path: "/boss",
+          auth: "boss",
         },
       ]}
     >
@@ -243,7 +243,7 @@ export function Example({ children }) {
 | NoAuthFallback | 无权限时显示内容                       | React.ReactNode | \<h1>403\</h1> |
 | children       | 内容                                   | React.ReactNode | -              |
 
-### Button
+### \<Button />
 
 有权限时显示为按钮，无权限时显示为文本。通常用于控制点击某个词条时是否展示详情。
 
@@ -267,7 +267,7 @@ export function Example() {
 | -------- | -------- | --------------- | ------ |
 | authCode | 权限编码 | String/String[] | -      |
 
-### Select
+### \<Select />
 
 下拉框，只展示有权限的选项。支持树形结构。
 
@@ -307,7 +307,7 @@ export function Example() {
 | ---------- | ----------------------------------------------------------- | ----- | ------ |
 | dataSource | 继承 next/select `dataSource`，新增 `auth` 属性标识权限编码 | any[] | -      |
 
-### Tab
+### \<Tab />
 
 选项卡，只展示有权限的选项。
 
@@ -330,7 +330,7 @@ export function Example() {
         },
         {
           title: "第三步",
-          children: <p style={{ marginTop: 16 }}>死掉</p>,
+          children: <p style={{ marginTop: 16 }}>嗝屁</p>,
           auth: "tab.step3",
         },
       ]}
@@ -347,7 +347,7 @@ export function Example() {
 | -------- | --------------------------------------------------------------------------------------------------------------- | ----- | ------ |
 | tabItems | 继承 [next/tab.item](https://fusion.design/pc/component/tab?themeid=2#Tab%20Item)，新增 `auth` 属性标识权限编码 | any[] | -      |
 
-### Table
+### \<Table />
 
 表格，只展示有权限的列。支持树形结构。
 
@@ -371,7 +371,7 @@ export function Example() {
         },
         {
           dataIndex: "plant",
-          title: "所属星球",
+          title: "所属星云",
           auth: "superman.plant",
         },
         {
@@ -431,7 +431,7 @@ export function Example() {
 | ------- | ------------------------------------------------------- | ----- | ------ |
 | columns | 继承 next/table `columns`，新增 `auth` 属性标识权限编码 | any[] | -      |
 
-### Menu
+### \<Menu />
 
 菜单，只展示有权限的菜单项。支持树形结构。
 
@@ -541,7 +541,7 @@ export function Example() {
 | itemType | 菜单类型，参考 next/menu 菜单类型 | "item" \| "subMenu" \| "group" | 'item' |
 | auth     | 权限编码                          | String/String[]                | -      |
 
-### Nav
+### \<Nav />
 
 导航栏，只显示有权限的导航项。支持树形结构。
 
@@ -621,6 +621,6 @@ export function Example() {
 | 参数     | 说明                             | 类型                          | 默认值 |
 | -------- | -------------------------------- | ----------------------------- | ------ |
 | label    | 标签内容                         | String                        | -      |
-| children | 子标签                           | NavItem[]                    | -      |
+| children | 子标签                           | NavItem[]                     | -      |
 | itemType | 导航类型，参考 next/nav 导航类型 | "item" \| "subNav" \| "group" | 'item' |
 | auth     | 权限编码                         | String/String[]               | -      |
