@@ -1,10 +1,10 @@
 ### 权限代理
 
-验证权限时在上下文内替换指定权限编码为其他权限编码。使用键值对配置 `authProxy`属性，`key` 为替换之后的权限，`value` 为原始权限。
+可以使用 `Proxy`，它会使验证权限时在上下文内替换指定权限编码为其他权限编码。使用键值对配置 `authProxy`属性，`key` 为替换之后的权限，`value` 为原始权限。
 
 #### 使用场景
 
-项目中两个页面几乎相同，于是某个页面完全引用了另一个页面组件，但两个页面需要配置两套权限。
+项目中两个页面几乎相同，于是某个页面完全引用了另一个页面组件，但两个页面需要配置不同的两套权限。
 
 ```tsx
 // 页面A
@@ -33,6 +33,37 @@ export function PageB() {
     >
       <PageA />
     </Auth.Proxy>
+  );
+}
+```
+
+#### 高级
+
+如果项目的权限编码具有一定规则，你也可以使用[权限验证器](/docs/stories-验证器--docs)来实现更灵活的权限代理，推荐使用局部验证器 `<Validator />` 以避免影响到其他模块。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+import PageA from "./PageA";
+
+export function PageB() {
+  return (
+    <Auth.Validator
+      validator={[
+        {
+          match: /user\.xxx\.(.*)/,
+          validate: (authCode, auth) => {
+            const arr = authCode.split(".");
+            const lastPart = arr[arr.length - 1];
+            if (auth[`teacher.xxx.${lastPart}`]) {
+              return true;
+            }
+            return false;
+          },
+        },
+      ]}
+    >
+      <PageA />
+    </Auth.Validator>
   );
 }
 ```

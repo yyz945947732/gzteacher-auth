@@ -2,11 +2,13 @@
 
 如果你希望自定义一些权限验证逻辑，你可以使用 `validator`。他会在验证权限编码时串行执行所有验证器，并在权限编码首次匹配到 `match`（正则或字符串） 时，执行对应的 `validate` 来判断权限。
 
-#### 使用案例
+#### 全局验证器 VS 局部验证器
 
-你可以用它来实现许多丰富的功能。
+验证器分为全局验证器和局部验证器。
 
-比如，在开发环境你想关闭所有权限来查看权限限制后的页面是否显示正常。
+全局验证器通过在 `Provider` 组件中配置 `validator` 属性使用。配置内容将在全局生效。
+
+以下代码将关闭所有权限。
 
 ```tsx
 import { Auth } from "@gzteacher/auth";
@@ -15,8 +17,7 @@ export function Example() {
   return (
     <Auth.Provider
       auth={{
-        love: true,
-        peace: true,
+        global: true,
       }}
       validator={[
         {
@@ -25,13 +26,40 @@ export function Example() {
         },
       ]}
     >
-      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+      <Auth.Wrapper authCode="global">全局生效</Auth.Wrapper>
     </Auth.Provider>
   );
 }
 ```
 
-或者，在开发环境你想关闭某个模块的权限来查看某个模块权限限制后的页面是否显示正常。
+局部验证器通过使用 `Validator` 组件包裹内容并配置其 `validator` 属性使用。局部验证器将在上下文内替换全局验证器的配置。
+
+以下代码将关闭当前模块的所有权限。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Validator
+      validator={[
+        {
+          match: /(.*)/,
+          validate: (authCode, auth) => false,
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="page">局部生效</Auth.Wrapper>
+    </Auth.Validator>
+  );
+}
+```
+
+#### 使用案例
+
+你可以用验证器来实现许多丰富的功能。
+
+比如，开启拥有某个前缀的所有权限。
 
 ```tsx
 import { Auth } from "@gzteacher/auth";
@@ -45,8 +73,8 @@ export function Example() {
       }}
       validator={[
         {
-          match: /user\.(.*)/,
-          validate: (authCode, auth) => false,
+          match: /common\.(.*)/,
+          validate: (authCode, auth) => true,
         },
       ]}
     >
@@ -56,20 +84,42 @@ export function Example() {
 }
 ```
 
-你还可以用它来实现更灵活的权限替换。[^2]
-
-[^2]: 这种写法无法完全替代 `<Auth.Proxy />`，`<Auth.Proxy />` 是在上下文内对权限进行替换，可以避免影响到其他模块的相关权限。
+或者，自动在开发环境时开启所有权限。
 
 ```tsx
 import { Auth } from "@gzteacher/auth";
 
 export function Example() {
   return (
-    <Auth.Provider
-      auth={{
-        love: true,
-        peace: true,
-      }}
+    <Auth.Validator
+      validator={[
+        {
+          match: /(.*)/,
+          validate: (authCode, auth) => {
+            if (__ENV__ === "DEV") {
+              return true;
+            } else {
+              return Boolean(auth[authCode]);
+            }
+          },
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
+    </Auth.Validator>
+  );
+}
+```
+
+如果项目的权限编码具有一定规则，你还可以使用局部验证器来实现更灵活的权限代理，无需使用 `Auth.Proxy` 单独配置每个权限，这样更有利于以后的功能扩展。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+import PageA from "./PageA";
+
+export function PageB() {
+  return (
+    <Auth.Validator
       validator={[
         {
           match: /user\.xxx\.(.*)/,
@@ -84,8 +134,8 @@ export function Example() {
         },
       ]}
     >
-      <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
-    </Auth.Provider>
+      <PageA />
+    </Auth.Validator>
   );
 }
 ```
@@ -149,9 +199,9 @@ export function Example() {
 
 #### 串行执行
 
-验证时将按照数组顺序依次匹配，因此你应该将需要优先匹配的验证器放在数组前面。
+权限编码在经过验证器验证时将按照数组顺序依次匹配，并在匹配到后终止后续匹配，因此你应该将需要优先匹配的验证器放在数组前面。
 
-以下代码在权限验证 `peace` 时，第二个和第三个验证器都能匹配到，但因为优先匹配到第二个验证器，所以返回验证结果为 `true`。
+以下代码在验证权限编码 `peace` 时，第二个和第三个验证器都能匹配到，但因为优先匹配到第二个验证器，所以返回验证结果为 `true`。
 
 ```tsx
 import { Auth } from "@gzteacher/auth";

@@ -160,12 +160,42 @@ export function Example() {
 
 #### API
 
-| 参数      | 说明                 | 类型                                     | 默认值 |
-| --------- | -------------------- | ---------------------------------------- | ------ |
-| auth      | 权限数据             | Record\<string, boolean>/String[]/String | -      |
-| disabled  | 是否关闭权限限制     | Boolean                                  | false  |
-| validator | 自定义权限逻辑验证器 | [Validator[]](#validator)                | -      |
-| children  | 内容                 | React.ReactNode                          | -      |
+| 参数      | 说明                                                             | 类型                                     | 默认值 |
+| --------- | ---------------------------------------------------------------- | ---------------------------------------- | ------ |
+| auth      | 权限数据                                                         | Record\<string, boolean>/String[]/String | -      |
+| disabled  | 是否关闭权限限制                                                 | Boolean                                  | false  |
+| validator | 自定义权限逻辑验证器，相当于全局 [\<Validator />](#validator-) | [Validator[]](#validator)                | -      |
+| children  | 内容                                                             | React.ReactNode                          | -      |
+
+### \<Validator />
+
+局部验证器。相比于 `Provider` 的 `validator`，他可以对某个模块进行更精细的权限控制而不影响其他模块。更多内容可以查看[验证器](/docs/stories-验证器--docs)。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+export function Example() {
+  return (
+    <Auth.Validator
+      validator={[
+        {
+          match: /(.*)/,
+          validate: (authCode, auth) => false,
+        },
+      ]}
+    >
+      <Auth.Wrapper authCode="page">局部生效</Auth.Wrapper>
+    </Auth.Validator>
+  );
+}
+```
+
+#### API
+
+| 参数      | 说明                 | 类型                      | 默认值 |
+| --------- | -------------------- | ------------------------- | ------ |
+| validator | 自定义权限逻辑验证器 | [Validator[]](#validator) | -      |
+| children  | 内容                 | React.ReactNode           | -      |
 
 ##### Validator
 
