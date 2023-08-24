@@ -97,8 +97,6 @@ function Layout() {
     //    "user.watch": true,
     //    "user.edit": true,
     // }
-    // or ["user.add", "user.edit"]
-    // or "user.add,user.edit"
     setAuth(auth);
   };
 
