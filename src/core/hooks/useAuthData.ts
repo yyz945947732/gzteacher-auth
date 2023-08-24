@@ -21,6 +21,7 @@ const defaultOptions: Options = {
 
 /** 获取根据权限过滤的集合 */
 export function useAuthData(data?: any[], options?: Options) {
+  /* istanbul ignore if  */
   if (!Array.isArray(data)) {
     return data;
   }

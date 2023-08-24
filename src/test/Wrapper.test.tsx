@@ -37,4 +37,10 @@ describe("Auth.Wrapper", () => {
     const html = container.innerHTML;
     expect(html).toEqual(TEST_TEXT);
   });
+
+  test("Checks Wrapper's children display when no authCode is provide", () => {
+    const { container } = render(<WrapperExample />);
+    const html = container.innerHTML;
+    expect(html).toEqual(TEST_TEXT);
+  });
 });

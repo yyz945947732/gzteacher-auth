@@ -23,6 +23,8 @@ function RouteGuard(props: RouteGuardProps) {
   const { routes, NoAuthFallback = <h1>403</h1>, children } = props;
 
   const isInRouter = useInRouterContext();
+
+  /* istanbul ignore if  */
   if (!isInRouter) {
     console.warn(
       `请在 react-router-dom V6 的 <Router /> 组件中使用 Auth.${RouteGuard.name} 组件。如果你不是使用 V6 版本请不要使用这个组件。@see https://reactrouter.com/en/main/router-components/router。
