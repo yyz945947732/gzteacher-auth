@@ -53,14 +53,16 @@
   - _Table_: 表格不展示无权限的列
   - _Menu_: 菜单不显示无权限的菜单项
   - _Nav_: 导航栏不显示无权限的导航项
-- 🦁 **代理**: 支持在上下文内将权限编码重定向到其他权限编码
+- 🤖️ **定制**: 支持自定义权限验证器以实现更丰富的权限功能
+  - _Validator_
+- 🦁 **代理**: 支持对权限编码进行重定向操作
   - _Proxy_
 - 🐌 **工具**: 权限业务逻辑相关的工具函数
   - _useAuth_: 返回权限信息和权限更新方法
   - _useMatchAuth_: 返回是否有对应权限
   - _useAuthData_: 根据传入集合返回有权限的集合数据
 - 🌲 **树形**: 权限功能支持树形结构
-  - _useAuthData_、_Select_、_Table_、_RouteGuard_ ...
+  - _useAuthData_、_Select_、_Table_、_RouteGuard_ 、_Menu_、_Nav_...
 
 ## Install
 

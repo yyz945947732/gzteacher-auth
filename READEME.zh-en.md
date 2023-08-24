@@ -53,6 +53,8 @@
   - _Table_: Tables do not display unprivileged columns
   - _Menu_: Menu do not display unprivileged items
   - _Nav_: Nav do not display unprivileged items
+- 🤖️ **Customization**: Support custom Validator to achieve richer permission ability
+  - _Validator_
 - 🦁 **Proxy**: Support for redirecting permission codes to other permission codes within context
   - _Proxy_
 - 🐌 **Tool**: Utility functions related to permission business logic
@@ -60,7 +62,7 @@
   - _useMatchAuth_: Check whether there is a corresponding permission
   - _useAuthData_: Get authorized collection data based on the input collection
 - 🌲 **Tree Shape**: Permission functions and components support tree structure
-  - _useAuthData_、_Select_、_Table_、_RouteGuard_ ...
+  - _useAuthData_、_Select_、_Table_、_RouteGuard_ 、_Menu_、_Nav_ etc.
 
 ## Install
 
@@ -143,4 +145,3 @@ runApp(appConfig);
 ## LICENSE
 
 [MIT](https://github.com/yyz945947732/gzteacher-auth/blob/master/LICENCE.md)
-
