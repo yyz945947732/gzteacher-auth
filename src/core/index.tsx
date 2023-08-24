@@ -8,7 +8,7 @@ import AuthRouteGuard from "./components/RouteGuard";
 import AuthSelect from "./components/Select";
 import AuthTab from "./components/Tab";
 import AuthTable from "./components/Table";
-import AuthValidator from './components/Validator';
+import AuthValidator from "./components/Validator";
 import type { WrapperProps } from "./components/Wrapper";
 import AuthWrapper from "./components/Wrapper";
 
@@ -56,7 +56,7 @@ export type { RouteGuardProps } from "./components/RouteGuard";
 export type { SelectProps } from "./components/Select";
 export type { TabProps } from "./components/Tab";
 export type { TableProps } from "./components/Table";
-export type { ValidatorProps } from './components/Validator'
+export type { ValidatorProps } from "./components/Validator";
 export type { WrapperProps } from "./components/Wrapper";
 export { useAuth } from "./hooks/useAuth";
 export { useAuthData } from "./hooks/useAuthData";
