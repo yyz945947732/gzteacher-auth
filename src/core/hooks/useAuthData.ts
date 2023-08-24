@@ -3,6 +3,7 @@ import { filter, map } from "tree-lodash";
 
 import { ProviderContext } from "../components/Provider";
 import { ProxyContext } from "../components/Proxy";
+import { ValidatorContext } from "../components/Validator";
 import { omit } from "../utils";
 import { isMatchAuth } from "../utils";
 
@@ -27,8 +28,9 @@ export function useAuthData(data?: any[], options?: Options) {
     ...defaultOptions,
     ...options,
   };
-  const { auth, disabled, validator } = useContext(ProviderContext);
+  const { auth, disabled } = useContext(ProviderContext);
   const { authProxy } = useContext(ProxyContext);
+  const { validator } = useContext(ValidatorContext);
 
   function filterFn(item: any) {
     return (

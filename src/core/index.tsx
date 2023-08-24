@@ -8,6 +8,7 @@ import AuthRouteGuard from "./components/RouteGuard";
 import AuthSelect from "./components/Select";
 import AuthTab from "./components/Tab";
 import AuthTable from "./components/Table";
+import AuthValidator from './components/Validator';
 import type { WrapperProps } from "./components/Wrapper";
 import AuthWrapper from "./components/Wrapper";
 
@@ -27,6 +28,7 @@ Auth.Table = AuthTable;
 Auth.RouteGuard = AuthRouteGuard;
 Auth.Menu = AuthMenu;
 Auth.Nav = AuthNav;
+Auth.Validator = AuthValidator;
 
 export {
   Auth,
@@ -40,6 +42,7 @@ export {
   AuthSelect,
   AuthTab,
   AuthTable,
+  AuthValidator,
   AuthWrapper,
 };
 export default Auth;
@@ -53,6 +56,7 @@ export type { RouteGuardProps } from "./components/RouteGuard";
 export type { SelectProps } from "./components/Select";
 export type { TabProps } from "./components/Tab";
 export type { TableProps } from "./components/Table";
+export type { ValidatorProps } from './components/Validator'
 export type { WrapperProps } from "./components/Wrapper";
 export { useAuth } from "./hooks/useAuth";
 export { useAuthData } from "./hooks/useAuthData";

@@ -1,17 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
-interface ProviderValidatorItem {
-  /** 匹配项，正则或字符串 */
-  match: RegExp | string;
-  /** 验证权限逻辑 */
-  validate: (
-    /** 权限编码 */
-    authCode: string,
-    /** 权限数据 */
-    auth: any
-  ) => boolean;
-}
-
+import type { ValidatorProps } from "../../index";
+import { AuthValidator } from "../../index";
 export interface ProviderProps {
   /** 内容 */
   children?: React.ReactNode;
@@ -28,7 +18,7 @@ export interface ProviderProps {
    */
   auth?: Record<string, boolean> | string[] | string;
   /**
-   * 自定义权限逻辑验证器
+   * 自定义全局权限逻辑验证器，相当于全局生效的 Validator 组件。
    * @example
    * [
    *    {
@@ -37,7 +27,7 @@ export interface ProviderProps {
    *    }
    * ]
    */
-  validator?: ProviderValidatorItem[];
+  validator?: ValidatorProps["validator"];
   /** 是否关闭权限限制，默认 `false` */
   disabled?: boolean;
 }
@@ -64,11 +54,10 @@ function Provider(props: ProviderProps) {
       value={{
         auth,
         setAuth,
-        validator,
         disabled,
       }}
     >
-      {children}
+      <AuthValidator validator={validator}>{children}</AuthValidator>
     </ProviderContext.Provider>
   );
 }

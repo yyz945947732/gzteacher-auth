@@ -11,6 +11,7 @@ export type {
   SelectProps,
   TableProps,
   TabProps,
+  ValidatorProps,
   WrapperProps,
 } from "./core";
 export {
@@ -24,6 +25,7 @@ export {
   AuthSelect,
   AuthTab,
   AuthTable,
+  AuthValidator,
   AuthWrapper,
 } from "./core";
 export { default as Auth } from "./core";

@@ -1,4 +1,5 @@
 import type { ProviderProps } from "../index";
+import { isRegExp } from "./isRegExp";
 
 interface Options extends Omit<ProviderProps, "children"> {
   /** 权限代理 */
@@ -56,8 +57,4 @@ export function isMatchAuth(options: Options): boolean {
     }
     return false;
   }
-}
-
-function isRegExp(val: unknown): val is RegExp {
-  return Object.prototype.toString.call(val) === "[object RegExp]";
 }
