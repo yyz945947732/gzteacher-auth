@@ -1,0 +1,58 @@
+### 引入
+
+`Auth` 功能支持多种引入方式。
+
+#### 组件引入
+
+你可以单独引入 `Auth`。
+
+```tsx
+import { Auth } from "@gzteacher/auth";
+
+function Example() {
+  return <Auth.Wrapper authCode="content">内容</Auth.Wrapper>;
+}
+```
+
+也可以使用默认引入。引入对象为 `Auth`。
+
+```tsx
+import Auth from "@gzteacher/auth";
+
+function Example() {
+  return <Auth.Wrapper authCode="content">内容</Auth.Wrapper>;
+}
+```
+
+如果你直接使用 `Auth`，他的作用等同于 `Auth.Wrapper`。
+
+```tsx
+import Auth from "@gzteacher/auth";
+
+function Example() {
+  return <Auth authCode="content">内容</Auth>;
+}
+```
+
+每个 `Auth` 组件都提供了单独的导出，因此你也可以单独引入某个组件，这样也许能减少打包后的代码体积。
+
+```tsx
+import { AuthWrapper } from "@gzteacher/auth";
+
+function Example() {
+  return <AuthWrapper authCode="content">内容</AuthWrapper>;
+}
+```
+
+#### 方法引入
+
+需要单独引入某个方法。
+
+```tsx
+import { useAuth } from "@gzteacher/auth";
+
+function Example() {
+  const [auth] = useAuth();
+  return <code>{JSON.stringify(auth)}</code>;
+}
+```
