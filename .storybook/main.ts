@@ -6,6 +6,7 @@ const config: StorybookConfig = {
     "../src/**/介绍.mdx",
     "../src/**/组件.mdx",
     "../src/**/API.mdx",
+    "../src/**/为什么使用.mdx",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],

@@ -9,6 +9,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    viewMode: 'docs',
   },
 };
 

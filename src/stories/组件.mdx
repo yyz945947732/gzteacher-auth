@@ -125,7 +125,7 @@ export function Example() {
         love: true,
         peace: true,
       }}
-      disabled={window.location.host.indexOf("localhost") > -1}
+      disabled={__ENV__ === "DEV"}
     >
       <Auth.Wrapper authCode="peace">世界和平</Auth.Wrapper>
     </Auth.Provider>
