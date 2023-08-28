@@ -1,5 +1,6 @@
+import { isRegExp } from "lodash-es";
+
 import type { ProviderProps } from "../index";
-import { isRegExp } from "./isRegExp";
 
 interface Options extends Omit<ProviderProps, "children"> {
   /** 权限代理 */

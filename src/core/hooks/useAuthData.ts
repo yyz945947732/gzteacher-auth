@@ -1,10 +1,10 @@
+import { defaults, omit } from "lodash-es";
 import { useContext } from "react";
 import { filter, map } from "tree-lodash";
 
 import { ProviderContext } from "../components/Provider";
 import { ProxyContext } from "../components/Proxy";
 import { ValidatorContext } from "../components/Validator";
-import { omit } from "../utils";
 import { isMatchAuth } from "../utils";
 
 /** 配置项 */
@@ -31,13 +31,7 @@ export function useAuthData(data?: any[], options?: Options) {
   if (!Array.isArray(data)) {
     return data;
   }
-  const combineOptions: Required<Options> = {
-    isTree: options?.isTree ?? defaultOptions.isTree,
-    childrenKey: options?.childrenKey ?? defaultOptions.childrenKey,
-    authKey: options?.authKey ?? defaultOptions.authKey,
-    isPreserveAuthKey:
-      options?.isPreserveAuthKey ?? defaultOptions.isPreserveAuthKey,
-  };
+  const combineOptions = defaults(options, defaultOptions);
   const { auth, disabled } = useContext(ProviderContext);
   const { authProxy } = useContext(ProxyContext);
   const { validator } = useContext(ValidatorContext);
@@ -56,7 +50,7 @@ export function useAuthData(data?: any[], options?: Options) {
   }
 
   function mapFn(item: any) {
-    return omit(item, [combineOptions.authKey]);
+    return omit(item, combineOptions.authKey);
   }
 
   const authorizedData = combineOptions?.isTree

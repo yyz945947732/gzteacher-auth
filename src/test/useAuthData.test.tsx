@@ -335,7 +335,7 @@ describe("useAuthData", () => {
     );
     expect(result.current).toEqual(EXPECT_DATA_FOR_TEST_4);
   });
-  test("Check if auth should be preserve if isPreserveAuthKey is false", () => {
+  test("Check if auth should not be preserve if isPreserveAuthKey is false", () => {
     const { result } = renderHook(
       () => useAuthData(MOCK_AUTH_DATA, { isPreserveAuthKey: false }),
       {
