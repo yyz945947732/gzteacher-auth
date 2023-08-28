@@ -37,7 +37,7 @@
   </a>
 </p>
 
-[📚 Doc](https://64cca10e002c2d1cef000809-tsdixediye.chromatic.com/)
+[📚 Doc](https://64cca10e002c2d1cef000809-ywnirvkurr.chromatic.com/)
 
 ## Features
 
