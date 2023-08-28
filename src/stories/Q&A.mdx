@@ -1,0 +1,19 @@
+### Q&A
+
+- 我的数据使用 `useAuthData` 过滤权限后，`children` 中的内容渲染不了了？
+
+  `useAuthData` 默认会对树形结构进行权限处理，`children` 字段会被当作默认子节点进行处理。如果你的数据不是树形结构，可以通过以下方式取消树形结构处理。
+
+  ```typescript
+  const authedData = useAuthData(data, { isTree: false });
+  ```
+
+  如果你的数据需要处理树形结构，同时需要 `children` 字段渲染内容，那么你可以通过 `childrenKey` 指定子节点为其他字段。
+
+  ```typescript
+  const authedData = useAuthData(data, { isTree: true, childrenKey: "child" });
+  ```
+
+- 我的项目中使用了 ice2.js，我可以同时使用两者的权限功能吗，他们会有冲突吗？
+
+  ice2.js 的权限功能通过内置的 `Provider` 在全局提供，当前库的 `Provider` 在其上下文之内，两者共享一套权限数据。所以如果你是使用查看相关的权限功能，那么两者同时使用没有影响也不会冲突。如果你是使用权限更新相关功能，由于 ice2.js 的 `Provider` 在更外层，所以推荐你使用 ice2.js 提供的权限更新函数更新权限。
