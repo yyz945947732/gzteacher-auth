@@ -84,7 +84,7 @@ Wrap with `Auth.Provider` component to use.
 
 ```typescript
 // index.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Auth } from "@gzteacher/auth";
 
 function Layout() {

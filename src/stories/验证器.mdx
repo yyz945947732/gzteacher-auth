@@ -103,7 +103,7 @@ export function Example() {
             if (__ENV__ === "DEV") {
               return true;
             } else {
-              return Boolean(auth[authCode]);
+              return auth[authCode];
             }
           },
         },
@@ -188,7 +188,7 @@ export function Example() {
             if (auth["admin"]) {
               return true;
             }
-            return Boolean(auth[authCode]);
+            return auth[authCode];
           },
         },
       ]}
@@ -255,7 +255,7 @@ export default [
       if (auth["admin"]) {
         return true;
       }
-      return Boolean(auth[authCode]);
+      return auth[authCode];
     },
   },
 ];
