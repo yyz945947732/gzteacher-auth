@@ -13,10 +13,16 @@ interface Options {
   isTree?: boolean;
   /** 子节点字段，默认为 `children` */
   childrenKey?: string;
+  /** 权限验证字段，默认为 `auth` */
+  authKey?: string;
+  /** 返回数据是否保留权限验证字段，默认为 `true` */
+  isPreserveAuthKey?: boolean;
 }
-const defaultOptions: Options = {
+const defaultOptions: Required<Options> = {
   isTree: true,
   childrenKey: "children",
+  authKey: "auth",
+  isPreserveAuthKey: true,
 };
 
 /** 获取根据权限过滤的集合 */
@@ -25,9 +31,12 @@ export function useAuthData(data?: any[], options?: Options) {
   if (!Array.isArray(data)) {
     return data;
   }
-  const combineOptions = {
-    ...defaultOptions,
-    ...options,
+  const combineOptions: Required<Options> = {
+    isTree: options?.isTree ?? defaultOptions.isTree,
+    childrenKey: options?.childrenKey ?? defaultOptions.childrenKey,
+    authKey: options?.authKey ?? defaultOptions.authKey,
+    isPreserveAuthKey:
+      options?.isPreserveAuthKey ?? defaultOptions.isPreserveAuthKey,
   };
   const { auth, disabled } = useContext(ProviderContext);
   const { authProxy } = useContext(ProxyContext);
@@ -35,23 +44,27 @@ export function useAuthData(data?: any[], options?: Options) {
 
   function filterFn(item: any) {
     return (
-      !item.auth ||
+      !item[combineOptions.authKey] ||
       isMatchAuth({
         auth,
         authProxy,
         disabled,
         validator,
-        authCode: item.auth,
+        authCode: item[combineOptions.authKey],
       })
     );
+  }
+
+  function mapFn(item: any) {
+    return omit(item, [combineOptions.authKey]);
   }
 
   const authorizedData = combineOptions?.isTree
     ? filter(data, filterFn, { childrenKey: combineOptions.childrenKey })
     : data.filter(filterFn);
 
-  function mapFn(item: any) {
-    return omit(item, ["auth"]);
+  if (combineOptions.isPreserveAuthKey) {
+    return authorizedData;
   }
 
   const purifiedData: any[] = combineOptions?.isTree

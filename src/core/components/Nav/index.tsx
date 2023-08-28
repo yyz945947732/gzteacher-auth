@@ -25,6 +25,8 @@ export interface NavItemProps
 export interface NavProps extends NavComponentProps {
   /** 导航项 */
   navItems?: NavItemProps[];
+  /** 权限验证字段，默认为 `auth` */
+  authKey?: string;
 }
 
 function renderTree(navs: NavItemProps) {
@@ -48,8 +50,8 @@ function renderTree(navs: NavItemProps) {
 function Nav(prop: NavProps) {
   useDetect(Nav.name);
 
-  const { navItems, ...otherProps } = prop;
-  const authItems = useAuthData(navItems);
+  const { navItems, authKey, ...otherProps } = prop;
+  const authItems = useAuthData(navItems, { authKey });
 
   return (
     <NavComponent {...otherProps}>

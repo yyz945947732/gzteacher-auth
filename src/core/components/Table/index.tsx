@@ -6,13 +6,16 @@ import type { TableProps as TableComponentProps } from "@alifd/next/types/table/
 import { useAuthData } from "../../hooks/useAuthData";
 import { useDetect } from "../../hooks/useDetect";
 
-export interface TableProps extends TableComponentProps {}
+export interface TableProps extends TableComponentProps {
+  /** 权限验证字段，默认为 `auth` */
+  authKey?: string;
+}
 
 function Table(prop: TableProps) {
   useDetect(Table.name);
 
-  const { children, columns, ...otherProps } = prop;
-  const authColumns = useAuthData(columns);
+  const { children, columns, authKey, ...otherProps } = prop;
+  const authColumns = useAuthData(columns, { authKey });
 
   return (
     <TableComponent.StickyLock columns={authColumns} {...otherProps}>

@@ -18,14 +18,17 @@ export interface ItemProps extends ItemComponentProps {
 export interface TabProps extends TabComponentProps {
   /** 选项卡项目 */
   tabItems?: ItemProps[];
+  /** 权限验证字段，默认为 `auth` */
+  authKey?: string;
 }
 
 function Tab(prop: TabProps) {
   useDetect(Tab.name);
 
-  const { tabItems, ...otherProps } = prop;
+  const { tabItems, authKey, ...otherProps } = prop;
   const authTabItems = useAuthData(tabItems, {
     isTree: false,
+    authKey,
   });
 
   return (

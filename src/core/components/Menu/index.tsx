@@ -25,6 +25,8 @@ export interface MenuItemProps
 export interface MenuProps extends MenuComponentProps {
   /** 菜单项 */
   menuItems?: MenuItemProps[];
+  /** 权限验证字段，默认为 `auth` */
+  authKey?: string;
 }
 
 function renderTree(menus: MenuItemProps) {
@@ -48,8 +50,8 @@ function renderTree(menus: MenuItemProps) {
 function Menu(prop: MenuProps) {
   useDetect(Menu.name);
 
-  const { menuItems, ...otherProps } = prop;
-  const authItems = useAuthData(menuItems);
+  const { menuItems, authKey, ...otherProps } = prop;
+  const authItems = useAuthData(menuItems, { authKey });
 
   return (
     <MenuComponent {...otherProps}>

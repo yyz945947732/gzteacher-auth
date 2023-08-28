@@ -6,13 +6,16 @@ import type { SelectProps as SelectComponentProps } from "@alifd/next/types/sele
 import { useAuthData } from "../../hooks/useAuthData";
 import { useDetect } from "../../hooks/useDetect";
 
-export interface SelectProps extends SelectComponentProps {}
+export interface SelectProps extends SelectComponentProps {
+  /** 权限验证字段，默认为 `auth` */
+  authKey?: string;
+}
 
 function Select(prop: SelectProps) {
   useDetect(Select.name);
 
-  const { children, dataSource, ...otherProps } = prop;
-  const authData = useAuthData(dataSource);
+  const { children, dataSource, authKey, ...otherProps } = prop;
+  const authData = useAuthData(dataSource, { authKey });
 
   return (
     <SelectComponent dataSource={authData} {...otherProps}>

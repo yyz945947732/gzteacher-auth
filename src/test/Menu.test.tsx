@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 
 import { Auth, MenuProps } from "../index";
 
-function MenuExample({ menuItems }: MenuProps) {
+function MenuExample({ menuItems, authKey }: MenuProps) {
   return (
     <Auth.Provider
       auth={{
@@ -15,7 +15,7 @@ function MenuExample({ menuItems }: MenuProps) {
         "menu.taobao.app": true,
       }}
     >
-      <Auth.Menu menuItems={menuItems} />
+      <Auth.Menu authKey={authKey} menuItems={menuItems} />
     </Auth.Provider>
   );
 }
@@ -69,6 +69,64 @@ describe("Auth.Menu", () => {
                     label: "淘宝APP",
                     key: "taobao.app",
                     auth: "menu.taobao.app",
+                  },
+                ],
+              },
+            ],
+          },
+        ]}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).toContain("支付方式");
+    expect(html).toContain("微信");
+    expect(html).toContain("支付宝");
+    expect(html).toContain("购物平台");
+    expect(html).not.toContain("美团");
+    expect(html).toContain("淘宝");
+  });
+
+  test("Check if content without auth should not render if authKey is custom key", () => {
+    const { container } = render(
+      <MenuExample
+        authKey="key"
+        menuItems={[
+          {
+            label: "支付方式",
+            itemType: "group",
+            key: "menu.pay",
+            children: [
+              {
+                label: "微信",
+                key: "menu.wechat",
+              },
+              {
+                label: "支付宝",
+                key: "menu.alipay",
+              },
+            ],
+          },
+          {
+            label: "购物平台",
+            itemType: "group",
+            key: "menu.platform",
+            children: [
+              {
+                label: "美团",
+                key: "menu.meituan",
+              },
+              {
+                label: "淘宝",
+                key: "menu.taobao",
+                itemType: "subMenu",
+                children: [
+                  {
+                    label: "淘宝网站",
+                    key: "menu.taobao.web",
+                  },
+                  {
+                    label: "淘宝APP",
+                    key: "menu.taobao.app",
                   },
                 ],
               },

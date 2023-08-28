@@ -20,7 +20,7 @@ const DATA_SOURCE = [
   },
 ];
 
-function TableExample({ columns }: TableProps) {
+function TableExample({ columns, authKey }: TableProps) {
   return (
     <Auth.Provider
       auth={{
@@ -29,7 +29,11 @@ function TableExample({ columns }: TableProps) {
         "user.column3": true,
       }}
     >
-      <Auth.Table columns={columns} dataSource={DATA_SOURCE} />
+      <Auth.Table
+        authKey={authKey}
+        columns={columns}
+        dataSource={DATA_SOURCE}
+      />
     </Auth.Provider>
   );
 }
@@ -58,6 +62,43 @@ describe("Auth.Table", () => {
             dataIndex: COLUMN4_HEADER_DATAINDEX,
             title: COLUMN4_HEADER_TITLE,
             auth: "user.column4",
+          },
+        ]}
+      />
+    );
+    const html = container.innerHTML;
+    expect(html).toContain(COLUMN1_HEADER_TITLE);
+    expect(html).toContain(COLUMN2_HEADER_TITLE);
+    expect(html).toContain(COLUMN3_HEADER_TITLE);
+    expect(html).toContain("张三");
+    expect(html).not.toContain(COLUMN4_HEADER_TITLE);
+    expect(html).not.toContain("16888888888@qq.com");
+  });
+
+  test("Check if content without auth should not render if authKey is custom key", () => {
+    const { container } = render(
+      <TableExample
+        authKey="access"
+        columns={[
+          {
+            dataIndex: COLUMN1_HEADER_DATAINDEX,
+            title: COLUMN1_HEADER_TITLE,
+            access: "user.column1",
+          },
+          {
+            dataIndex: COLUMN2_HEADER_DATAINDEX,
+            title: COLUMN2_HEADER_TITLE,
+            access: "user.column2",
+          },
+          {
+            dataIndex: COLUMN3_HEADER_DATAINDEX,
+            title: COLUMN3_HEADER_TITLE,
+            access: "user.column3",
+          },
+          {
+            dataIndex: COLUMN4_HEADER_DATAINDEX,
+            title: COLUMN4_HEADER_TITLE,
+            access: "user.column4",
           },
         ]}
       />

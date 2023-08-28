@@ -34,9 +34,7 @@ export function isMatchAuth(options: Options): boolean {
         const isStrMatch = typeof match === "string" && match === targetAuth;
         if (isRegMatch || isStrMatch) {
           const isPass = validate(targetAuth, auth);
-          if (typeof isPass === "boolean") {
-            isValidatorPass = isPass;
-          }
+          isValidatorPass = Boolean(isPass);
           break;
         }
       }

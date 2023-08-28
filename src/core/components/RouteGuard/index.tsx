@@ -13,6 +13,8 @@ export interface RouteGuardProps {
   routes?: any[];
   /** 无权限时显示内容，默认为 403 页面 */
   NoAuthFallback?: React.ReactNode;
+  /** 权限验证字段，默认为 `auth` */
+  authKey?: string;
   /** 内容 */
   children?: React.ReactNode;
 }
@@ -20,7 +22,7 @@ export interface RouteGuardProps {
 function RouteGuard(props: RouteGuardProps) {
   useDetect(RouteGuard.name);
 
-  const { routes, NoAuthFallback = <h1>403</h1>, children } = props;
+  const { routes, NoAuthFallback = <h1>403</h1>, authKey, children } = props;
 
   const isInRouter = useInRouterContext();
 
@@ -34,7 +36,7 @@ function RouteGuard(props: RouteGuardProps) {
   }
 
   const location = useLocation();
-  const allowRoutes = useAuthData(routes);
+  const allowRoutes = useAuthData(routes, { authKey });
 
   const [isAllow, setIsAllow] = useState(true);
 

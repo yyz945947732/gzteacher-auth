@@ -35,7 +35,7 @@ export function Home() {
 
 ### useMatchAuth
 
-返回是否有某个权限
+返回是否拥有某个权限
 
 **Parameters**
 
@@ -59,14 +59,16 @@ export function Home() {
 
 ### useAuthData
 
-返回一个过滤的权限的新集合，支持树形结构。
+传入一个数据集合，返回一个过滤了权限的新集合，支持树形结构。
 
 **Parameters**
 
-- `sourceData`: 集合数据，通过 `auth` 字段标识权限。
+- `sourceData`: 集合数据，通过 `auth` 或自定义权限验证字段标识权限。
 - `options`: 配置
-  - `isTree`: 是否为树形结构，为树形结构时将对子节点进行权限过滤，默认为 `true`。
+  - `isTree`: 是否支持树形结构，开启时将对子节点进行权限过滤，默认为 `true`。
   - `childrenKey`: 子节点字段，默认为 `children`。
+  - `authKey`: 权限验证字段，默认为 `auth`。
+  - `isPreserveAuthKey`: 返回数据是否保留权限验证字段，默认为 `true`。
 
 **Returns**
 

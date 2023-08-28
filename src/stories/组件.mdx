@@ -269,6 +269,7 @@ export function Example({ children }) {
 | -------------- | -------------------------------------- | --------------- | -------------- |
 | routes         | 路由数据，通过 `auth` 字段标识权限编码 | any[]           | -              |
 | NoAuthFallback | 无权限时显示内容                       | React.ReactNode | \<h1>403\</h1> |
+| authKey        | 权限验证字段，默认为 `auth`            | String          | 'auth'         |
 | children       | 内容                                   | React.ReactNode | -              |
 
 ### \<Button />
@@ -331,9 +332,10 @@ export function Example() {
 
 属性继承 [next/select](https://fusion.design/pc/component/select?themeid=2#API)
 
-| 参数       | 说明                                                        | 类型  | 默认值 |
-| ---------- | ----------------------------------------------------------- | ----- | ------ |
-| dataSource | 继承 next/select `dataSource`，新增 `auth` 属性标识权限编码 | any[] | -      |
+| 参数       | 说明                                                        | 类型   | 默认值 |
+| ---------- | ----------------------------------------------------------- | ------ | ------ |
+| dataSource | 继承 next/select `dataSource`，通过权限验证字段标识权限编码 | any[]  | -      |
+| authKey    | 权限验证字段，默认为 `auth`                                 | String | 'auth' |
 
 ### \<Tab />
 
@@ -371,9 +373,10 @@ export function Example() {
 
 属性继承 [next/tab](https://fusion.design/pc/component/tab?themeid=2#API)
 
-| 参数     | 说明                                                                                                            | 类型  | 默认值 |
-| -------- | --------------------------------------------------------------------------------------------------------------- | ----- | ------ |
-| tabItems | 继承 [next/tab.item](https://fusion.design/pc/component/tab?themeid=2#Tab%20Item)，新增 `auth` 属性标识权限编码 | any[] | -      |
+| 参数     | 说明                                                                                                            | 类型   | 默认值 |
+| -------- | --------------------------------------------------------------------------------------------------------------- | ------ | ------ |
+| tabItems | 继承 [next/tab.item](https://fusion.design/pc/component/tab?themeid=2#Tab%20Item)，通过权限验证字段标识权限编码 | any[]  | -      |
+| authKey  | 权限验证字段，默认为 `auth`                                                                                     | String | 'auth' |
 
 ### \<Table />
 
@@ -455,9 +458,10 @@ export function Example() {
 
 属性继承 [next/table](https://fusion.design/pc/component/table?themeid=2#API)
 
-| 参数    | 说明                                                    | 类型  | 默认值 |
-| ------- | ------------------------------------------------------- | ----- | ------ |
-| columns | 继承 next/table `columns`，新增 `auth` 属性标识权限编码 | any[] | -      |
+| 参数    | 说明                                                    | 类型   | 默认值 |
+| ------- | ------------------------------------------------------- | ------ | ------ |
+| columns | 继承 next/table `columns`，通过权限验证字段标识权限编码 | any[]  | -      |
+| authKey | 权限验证字段，默认为 `auth`                             | String | 'auth' |
 
 ### \<Menu />
 
@@ -542,9 +546,10 @@ export function Example() {
 
 属性继承 [next/menu](https://fusion.design/pc/component/menu?themeid=2#API)
 
-| 参数      | 说明       | 类型  | 默认值 |
-| --------- | ---------- | ----- | ------ |
-| menuItems | MenuItem[] | any[] | -      |
+| 参数      | 说明                        | 类型   | 默认值 |
+| --------- | --------------------------- | ------ | ------ |
+| menuItems | MenuItem[]                  | any[]  | -      |
+| authKey   | 权限验证字段，默认为 `auth` | String | 'auth' |
 
 #### MenuItem
 
@@ -555,7 +560,7 @@ export function Example() {
 | label    | 标签内容                          | String                         | -      |
 | children | 子标签                            | MenuItem[]                     | -      |
 | itemType | 菜单类型，参考 next/menu 菜单类型 | "item" \| "subMenu" \| "group" | 'item' |
-| auth     | 权限编码                          | String/String[]                | -      |
+| auth     | 权限编码，或使用自定义权限字段    | String/String[]                | -      |
 
 ### \<Nav />
 
@@ -626,9 +631,10 @@ export function Example() {
 
 属性继承 [next/nav](https://fusion.design/pc/component/nav?themeid=2#API)
 
-| 参数     | 说明      | 类型  | 默认值 |
-| -------- | --------- | ----- | ------ |
-| navItems | NavItem[] | any[] | -      |
+| 参数     | 说明                        | 类型   | 默认值 |
+| -------- | --------------------------- | ------ | ------ |
+| navItems | NavItem[]                   | any[]  | -      |
+| authKey  | 权限验证字段，默认为 `auth` | String | 'auth' |
 
 #### NavItem
 
@@ -639,7 +645,7 @@ export function Example() {
 | label    | 标签内容                         | String                        | -      |
 | children | 子标签                           | NavItem[]                     | -      |
 | itemType | 导航类型，参考 next/nav 导航类型 | "item" \| "subNav" \| "group" | 'item' |
-| auth     | 权限编码                         | String/String[]               | -      |
+| auth     | 权限编码，或使用自定义权限字段   | String/String[]               | -      |
 
 ### \<Proxy />
 
