@@ -26,20 +26,18 @@ function RouteGuard(props: RouteGuardProps) {
 
   const isInRouter = useInRouterContext();
 
-  /* istanbul ignore if  */
-  if (!isInRouter) {
-    console.warn(
-      `请在 react-router-dom V6 的 <Router /> 组件中使用 Auth.${RouteGuard.name} 组件。如果你不是使用 V6 版本请不要使用这个组件。@see https://reactrouter.com/en/main/router-components/router。
-      `
-    );
-    return <>{children}</>;
-  }
-
   const location = useLocation();
   const allowRoutes = useAuthData(routes, { authKey });
 
   const isAllow = useMemo(() => {
-    if (!routes) {
+    /* istanbul ignore if  */
+    if (!isInRouter) {
+      console.warn(
+        `请在 react-router-dom V6 的 <Router /> 组件中使用 Auth.${RouteGuard.name} 组件。如果你不是使用 V6 版本请不要使用这个组件。@see https://reactrouter.com/en/main/router-components/router。
+            `
+      );
+      return true;
+    } else if (!routes) {
       return true;
     } else if (!allowRoutes) {
       return false;
@@ -51,7 +49,7 @@ function RouteGuard(props: RouteGuardProps) {
     } else {
       return true;
     }
-  }, [location, allowRoutes]);
+  }, [isInRouter, routes, allowRoutes, location]);
 
   return <>{isAllow ? children : NoAuthFallback}</>;
 }

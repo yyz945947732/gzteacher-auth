@@ -27,14 +27,15 @@ const defaultOptions: Required<Options> = {
 
 /** 获取根据权限过滤的集合 */
 export function useAuthData(data?: any[], options?: Options) {
-  /* istanbul ignore if  */
-  if (!Array.isArray(data)) {
-    return data;
-  }
   const combineOptions = defaults(options, defaultOptions);
   const { auth, disabled } = useContext(ProviderContext);
   const { authProxy } = useContext(ProxyContext);
   const { validator } = useContext(ValidatorContext);
+
+  /* istanbul ignore if  */
+  if (!Array.isArray(data)) {
+    return data;
+  }
 
   function filterFn(item: any) {
     return (
