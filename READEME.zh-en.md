@@ -78,6 +78,12 @@ Install with [yarn](https://yarnpkg.com/):
 yarn add @gzteacher/auth
 ```
 
+Install with [pnpm](https://pnpm.io/):
+
+```sh
+pnpm add @gzteacher/auth
+```
+
 ## Usage
 
 Wrap with `Auth.Provider` component to use.
