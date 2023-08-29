@@ -32,16 +32,17 @@ const ROUTES = [
   },
 ];
 
-function RouteGuardExample() {
+function RouteGuardExample(props: { auth?: Record<string, boolean> }) {
+  const {
+    auth = {
+      "page.index": true,
+      "page.about": true,
+      "page.info": true,
+    },
+  } = props;
   return (
     <HashRouter>
-      <Auth.Provider
-        auth={{
-          "page.index": true,
-          "page.about": true,
-          "page.info": true,
-        }}
-      >
+      <Auth.Provider auth={auth}>
         <ul>
           <li>
             <Link data-testid="index" to="/">
@@ -88,20 +89,43 @@ describe("Auth.RouteGuard", () => {
   });
   test("Check if Route's children with auth should be render", () => {
     const { container } = render(<RouteGuardExample />);
-    const indexSecret = screen.getByTestId("index");
-    const aboutSecret = screen.getByTestId("about");
-    const infoSecret = screen.getByTestId("info");
-    fireEvent.click(indexSecret);
+    const linkIndex = screen.getByTestId("index");
+    const linkAbout = screen.getByTestId("about");
+    const linkInfo = screen.getByTestId("info");
+    fireEvent.click(linkIndex);
     let html = container.innerHTML;
     expect(html).toContain(PAGE_1_HTML);
     expect(html).not.toContain(NO_AUTH_CONTENT);
-    fireEvent.click(aboutSecret);
+    fireEvent.click(linkAbout);
     html = container.innerHTML;
     expect(html).toContain(PAGE_2_HTML);
     expect(html).not.toContain(NO_AUTH_CONTENT);
-    fireEvent.click(infoSecret);
+    fireEvent.click(linkInfo);
     html = container.innerHTML;
     expect(html).toContain(PAGE_3_HTML);
     expect(html).not.toContain(NO_AUTH_CONTENT);
+  });
+  test("Check if Route's children without auth should not be render when no auth provide", () => {
+    const { container } = render(<RouteGuardExample auth={{}} />);
+    const linkIndex = screen.getByTestId("index");
+    const linkAbout = screen.getByTestId("about");
+    const linkInfo = screen.getByTestId("info");
+    const linkSecret = screen.getByTestId("secret");
+    fireEvent.click(linkIndex);
+    let html = container.innerHTML;
+    expect(html).not.toContain(PAGE_1_HTML);
+    expect(html).toContain(NO_AUTH_CONTENT);
+    fireEvent.click(linkAbout);
+    html = container.innerHTML;
+    expect(html).not.toContain(PAGE_2_HTML);
+    expect(html).toContain(NO_AUTH_CONTENT);
+    fireEvent.click(linkInfo);
+    html = container.innerHTML;
+    expect(html).not.toContain(PAGE_3_HTML);
+    expect(html).toContain(NO_AUTH_CONTENT);
+    fireEvent.click(linkSecret);
+    html = container.innerHTML;
+    expect(html).not.toContain(PAGE_4_HTML);
+    expect(html).toContain(NO_AUTH_CONTENT);
   });
 });

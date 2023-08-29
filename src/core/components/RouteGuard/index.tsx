@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import {
   matchRoutes,
   useInRouterContext,
@@ -38,16 +38,18 @@ function RouteGuard(props: RouteGuardProps) {
   const location = useLocation();
   const allowRoutes = useAuthData(routes, { authKey });
 
-  const [isAllow, setIsAllow] = useState(true);
-
-  useEffect(() => {
-    if (!allowRoutes || !routes) {
-      return;
-    }
-    if (!matchRoutes(allowRoutes, location) && matchRoutes(routes, location)) {
-      setIsAllow(false);
+  const isAllow = useMemo(() => {
+    if (!routes) {
+      return true;
+    } else if (!allowRoutes) {
+      return false;
+    } else if (
+      !matchRoutes(allowRoutes, location) &&
+      matchRoutes(routes, location)
+    ) {
+      return false;
     } else {
-      setIsAllow(true);
+      return true;
     }
   }, [location, allowRoutes]);
 
