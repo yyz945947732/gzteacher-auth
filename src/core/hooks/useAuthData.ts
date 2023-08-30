@@ -37,33 +37,35 @@ export function useAuthData(data?: any[], options?: Options) {
     return data;
   }
 
+  const { authKey, isTree, isPreserveAuthKey, childrenKey } = combineOptions;
+
   function filterFn(item: any) {
     return (
-      !item[combineOptions.authKey] ||
+      !item[authKey] ||
       isMatchAuth({
         auth,
         authProxy,
         disabled,
         validator,
-        authCode: item[combineOptions.authKey],
+        authCode: item[authKey],
       })
     );
   }
 
   function mapFn(item: any) {
-    return omit(item, combineOptions.authKey);
+    return omit(item, authKey);
   }
 
-  const authorizedData = combineOptions?.isTree
-    ? filter(data, filterFn, { childrenKey: combineOptions.childrenKey })
+  const authorizedData = isTree
+    ? filter(data, filterFn, { childrenKey })
     : data.filter(filterFn);
 
-  if (combineOptions.isPreserveAuthKey) {
+  if (isPreserveAuthKey) {
     return authorizedData;
   }
 
-  const purifiedData: any[] = combineOptions?.isTree
-    ? map(authorizedData, mapFn, { childrenKey: combineOptions.childrenKey })
+  const purifiedData: any[] = isTree
+    ? map(authorizedData, mapFn, { childrenKey })
     : authorizedData.map(mapFn);
 
   return purifiedData;
