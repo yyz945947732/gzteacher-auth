@@ -29,7 +29,7 @@
       alt="PRs Welcome"
     />
   </a>
-  <a href="/LICENSE">
+  <a href="https://github.com/yyz945947732/gzteacher-auth/blob/master/LICENCE.md">
     <img
       src="https://img.shields.io/badge/license-MIT-blue.svg"
       alt="GitHub license"
