@@ -14,11 +14,11 @@ export interface SelectProps extends SelectComponentProps {
 function Select(prop: SelectProps) {
   useDetect(Select.name);
 
-  const { children, dataSource, authKey, ...otherProps } = prop;
+  const { children, dataSource, authKey, ...selectProps } = prop;
   const authData = useAuthData(dataSource, { authKey });
 
   return (
-    <SelectComponent dataSource={authData} {...otherProps}>
+    <SelectComponent dataSource={authData} {...selectProps}>
       {children}
     </SelectComponent>
   );

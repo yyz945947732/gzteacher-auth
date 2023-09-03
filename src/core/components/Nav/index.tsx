@@ -50,11 +50,11 @@ function renderTree(navs: NavItemProps) {
 function Nav(prop: NavProps) {
   useDetect(Nav.name);
 
-  const { navItems, authKey, ...otherProps } = prop;
+  const { navItems, authKey, ...navProps } = prop;
   const authItems = useAuthData(navItems, { authKey });
 
   return (
-    <NavComponent {...otherProps}>
+    <NavComponent {...navProps}>
       {authItems?.map((item) => renderTree(item))}
     </NavComponent>
   );

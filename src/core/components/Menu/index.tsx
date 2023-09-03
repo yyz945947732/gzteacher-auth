@@ -50,11 +50,11 @@ function renderTree(menus: MenuItemProps) {
 function Menu(prop: MenuProps) {
   useDetect(Menu.name);
 
-  const { menuItems, authKey, ...otherProps } = prop;
+  const { menuItems, authKey, ...menuProps } = prop;
   const authItems = useAuthData(menuItems, { authKey });
 
   return (
-    <MenuComponent {...otherProps}>
+    <MenuComponent {...menuProps}>
       {authItems?.map((item) => renderTree(item))}
     </MenuComponent>
   );
