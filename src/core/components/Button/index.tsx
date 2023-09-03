@@ -19,15 +19,10 @@ function Button(prop: ButtonProps) {
 
   const { authCode, children, ...otherProps } = prop;
   const canEvent = useMatchAuth(authCode);
-  return (
-    <>
-      {canEvent ? (
-        <ButtonComponent {...otherProps}>{children}</ButtonComponent>
-      ) : (
-        children
-      )}
-    </>
-  );
+  if (!canEvent) {
+    return <>{children}</>;
+  }
+  return <ButtonComponent {...otherProps}>{children}</ButtonComponent>;
 }
 
 export default Button;
