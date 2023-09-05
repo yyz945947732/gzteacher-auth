@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/yyz945947732/gzteacher-auth">
-    <img alt="@gzteacher/auth" src="./public/logo.png" width="280" />
+    <img src="https://s1.imagehub.cc/images/2023/09/03/logo.png" alt="logo.png" border="0" width="280"  />
   </a>
 </p>
 
@@ -29,7 +29,7 @@
       alt="PRs Welcome"
     />
   </a>
-  <a href="/LICENSE">
+  <a href="https://github.com/yyz945947732/gzteacher-auth/blob/master/LICENCE.md">
     <img
       src="https://img.shields.io/badge/license-MIT-blue.svg"
       alt="GitHub license"
@@ -37,7 +37,7 @@
   </a>
 </p>
 
-[📚 Doc](https://64cca10e002c2d1cef000809-uhdgdrubzm.chromatic.com/)
+[📚 Doc](https://64cca10e002c2d1cef000809-bjjywrzpuh.chromatic.com/)
 
 ## Features
 

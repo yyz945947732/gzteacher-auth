@@ -14,11 +14,11 @@ export interface TableProps extends TableComponentProps {
 function Table(prop: TableProps) {
   useDetect(Table.name);
 
-  const { children, columns, authKey, ...otherProps } = prop;
+  const { children, columns, authKey, ...tableProps } = prop;
   const authColumns = useAuthData(columns, { authKey });
 
   return (
-    <TableComponent.StickyLock columns={authColumns} {...otherProps}>
+    <TableComponent.StickyLock columns={authColumns} {...tableProps}>
       {children}
     </TableComponent.StickyLock>
   );

@@ -15,7 +15,10 @@ function DenyWrapper(props: DenyWrapperProps) {
 
   const { authCode, children } = props;
   const notRender = useMatchAuth(authCode);
-  return <>{notRender ? <></> : children}</>;
+  if (notRender) {
+    return <></>;
+  }
+  return <>{children}</>;
 }
 
 export default DenyWrapper;

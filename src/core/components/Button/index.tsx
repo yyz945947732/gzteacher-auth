@@ -17,17 +17,14 @@ export interface ButtonProps extends ButtonComponentProps {
 function Button(prop: ButtonProps) {
   useDetect(Button.name);
 
-  const { authCode, children, ...otherProps } = prop;
+  const { authCode, children, ...buttonProps } = prop;
   const canEvent = useMatchAuth(authCode);
-  return (
-    <>
-      {canEvent ? (
-        <ButtonComponent {...otherProps}>{children}</ButtonComponent>
-      ) : (
-        children
-      )}
-    </>
-  );
+  if (!canEvent) {
+    return <>{children}</>;
+  }
+  return <ButtonComponent {...buttonProps}>{children}</ButtonComponent>;
 }
+
+Button.Group = ButtonComponent.Group;
 
 export default Button;

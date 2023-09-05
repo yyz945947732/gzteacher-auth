@@ -15,7 +15,10 @@ function Wrapper(props: WrapperProps) {
 
   const { authCode, children } = props;
   const canRender = useMatchAuth(authCode);
-  return <>{canRender ? children : <></>}</>;
+  if (!canRender) {
+    return <></>;
+  }
+  return <>{children}</>;
 }
 
 export default Wrapper;
