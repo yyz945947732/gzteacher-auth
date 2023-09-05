@@ -1,7 +1,9 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
+import { useDeepCompareEffect } from "../../hooks/useDeepCompareEffect";
 import type { ValidatorProps } from "../../index";
 import { AuthValidator } from "../../index";
+
 export interface ProviderProps {
   /** 内容 */
   children?: React.ReactNode;
@@ -45,7 +47,7 @@ function Provider(props: ProviderProps) {
 
   const [auth, setAuth] = useState(authFromProps);
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     setAuth(authFromProps);
   }, [authFromProps]);
 
